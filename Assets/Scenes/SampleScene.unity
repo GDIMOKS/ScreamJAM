@@ -553,7 +553,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901963397}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 83b7f5549bd2f27499cf4c8d57d689d3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -567,7 +567,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901963397}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 400
-  jumpForce: 50
+  jumpForce: 400
   isGrounded: 0
 --- !u!114 &901963404
 MonoBehaviour:
@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 2
-  maxLookAngle: 180
+  maxLookAngle: 90
   camera: {fileID: 817295291}
 --- !u!1 &963194225
 GameObject:

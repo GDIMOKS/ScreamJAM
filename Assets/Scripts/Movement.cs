@@ -21,17 +21,12 @@ public class Movement : MonoBehaviour
         float horMove = Input.GetAxis("Horizontal");
         float verMove = Input.GetAxis("Vertical");
 
-        rb.AddForce(transform.TransformDirection(new Vector3(horMove, 0, verMove).normalized * speed * Time.fixedDeltaTime) - new Vector3(rb.velocity.x, 0, rb.velocity.z), ForceMode.VelocityChange);
-
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            rb.AddForce(new Vector3(0, jumpForce, 0) * Time.fixedDeltaTime, ForceMode.Impulse);
-        }
+        //if (isGrounded)
+            rb.AddForce(transform.TransformDirection(new Vector3(horMove, 0, verMove).normalized * speed * Time.fixedDeltaTime) - new Vector3(rb.velocity.x, 0, rb.velocity.z), ForceMode.VelocityChange);
 
         Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
         Vector3 direction = transform.TransformDirection(Vector3.down);
-        float distance = .9f;
+        float distance = .7f;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {
@@ -41,6 +36,14 @@ public class Movement : MonoBehaviour
         else
         {
             isGrounded = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb.AddForce(new Vector3(0, jumpForce, 0));
         }
     }
 }
