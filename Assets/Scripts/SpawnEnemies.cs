@@ -6,26 +6,35 @@ public class SpawnEnemies : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject Enemy;
+    int deads = 0;
+    public int count = 5;
+    GameObject[] enemy;
+    
     public bool enemyExist = false;
-    // Start is called before the first frame update
     void Start()
     {
-        
+        enemy = new GameObject[count];   
     }
 
-    // Update is called once per frame
     void Update()
-    {
-        if (!enemyExist)
+    { 
+        for (int i = 0; i < count; i++)
         {
-            Enemy.transform.position = spawnPoint.position;
-            Instantiate<GameObject>(Enemy);
-            enemyExist = true;
+            if (enemy[i] == null)
+            {
+                deads++;
+            }
         }
 
-        if (this.Enemy.GetComponent<CreatureLife>().dead == true)
+        if (deads == count)
         {
-            enemyExist = false;
+            for (int i = 0; i < count; i++)
+            {
+                enemy[i] = Instantiate<GameObject>(Enemy);
+                enemy[i].transform.position = spawnPoint.position + new Vector3(Random.Range(-25, 25), spawnPoint.position.y, Random.Range(-25, 25));
+            }
         }
+
+        deads = 0;
     }
 }

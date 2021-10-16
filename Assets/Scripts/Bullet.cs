@@ -29,6 +29,17 @@ public class Bullet : MonoBehaviour
 
             Destroy(this.gameObject);
         }
+        if (Physics.Linecast(this.transform.position, LastPos, out hit))
+        {
+            Debug.Log(hit.transform.name);
+
+            if (hit.transform.GetComponent<CreatureLife>())
+            {
+                hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+            }
+
+            Destroy(this.gameObject);
+        }
         LastPos = transform.position;
 
         currentTime += Time.fixedDeltaTime;

@@ -19,19 +19,19 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         Ammo = StartAmmo;
-        Bullet.GetComponent<Bullet>().Dmg = dmg;
-        Bullet.GetComponent<Bullet>().Speed = speed;
-        Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
     }
     private void Update()
     {
         if (Input.GetButtonDown("Fire1") && CanShoot && Ammo > 0)
         {
+            Bullet.GetComponent<Bullet>().Dmg = dmg;
+            Bullet.GetComponent<Bullet>().Speed = speed;
+            Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
             Shoot();
         }
-        else if (Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || (Input.GetButtonDown("Fire1") && Ammo <= 0))
+        else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || (Input.GetButtonDown("Fire1") && Ammo <= 0)) && CanShoot)
         {
-            if (CanShoot)
+            //if (CanShoot)
                 StartCoroutine(Reload(reloadTime));
             CanShoot = false;
         }
