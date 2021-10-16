@@ -4,7 +4,8 @@ public class Bullet : MonoBehaviour
 {
     public float Speed;
     public int Dmg;
-    public float lifeTime = 0f;
+    public float lifeTime;
+    float currentTime = 0f;
 
     private Rigidbody rg;
     private Vector3 LastPos;
@@ -30,8 +31,8 @@ public class Bullet : MonoBehaviour
         }
         LastPos = transform.position;
 
-        lifeTime += Time.fixedDeltaTime;
-        if (lifeTime >= 5f)
+        currentTime += Time.fixedDeltaTime;
+        if (currentTime >= lifeTime)
         {
             Destroy(this.gameObject);
         }

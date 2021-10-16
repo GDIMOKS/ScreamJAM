@@ -15,6 +15,8 @@ public class ShotGun : Shooting
             {
                 Bullet.GetComponent<Bullet>().Dmg = 3;
                 Bullet.GetComponent<Bullet>().Speed = 200;
+                Bullet.GetComponent<Bullet>().lifeTime = 1f;
+
                 angle.eulerAngles = PivotPoint.rotation.eulerAngles + new Vector3(Random.Range(0, 30), Random.Range(0, 30), 0);
                 Instantiate(Bullet, PivotPoint.position, angle);
             }

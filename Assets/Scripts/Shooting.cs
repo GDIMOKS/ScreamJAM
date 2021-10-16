@@ -21,6 +21,7 @@ public class Shooting : MonoBehaviour
         {
             Bullet.GetComponent<Bullet>().Dmg = 25;
             Bullet.GetComponent<Bullet>().Speed = 125;
+            Bullet.GetComponent<Bullet>().lifeTime = 2f;
 
             Ammo--;
             Instantiate(Bullet, PivotPoint.position, PivotPoint.rotation);
