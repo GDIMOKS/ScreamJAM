@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float Speed = 10;
+    public float Speed;
     public int Dmg;
+    public float lifeTime = 0f;
 
     private Rigidbody rg;
     private Vector3 LastPos;
@@ -19,12 +20,20 @@ public class Bullet : MonoBehaviour
         if (Physics.Linecast(LastPos, this.transform.position, out hit))
         {
             Debug.Log(hit.transform.name);
-            /*TODO:
-            if (hit.—юда код в котором будет хп надо засунуть)
-                —нижаем хп на Dmg(функци€ должна быть внутри кода с хп)
-            */
+            
+            if (hit.transform.GetComponent<CreatureLife>())
+            {
+                hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+            }
+
             Destroy(this.gameObject);
         }
         LastPos = transform.position;
+
+        lifeTime += Time.fixedDeltaTime;
+        if (lifeTime >= 5f)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

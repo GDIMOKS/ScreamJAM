@@ -6,19 +6,11 @@ public class CameraMovement : MonoBehaviour
 {
     public float mouseSensitivity;
     public float maxLookAngle;
-    public GameObject camera;
+    public GameObject cam;
 
     private float yaw;
     private float pitch;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
     void Update()
     {
         yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -27,6 +19,6 @@ public class CameraMovement : MonoBehaviour
         pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
 
         transform.localEulerAngles = new Vector3(0, yaw, 0);
-        camera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+        cam.transform.localEulerAngles = new Vector3(pitch, 0, 0);
     }
 }
