@@ -7,6 +7,11 @@ public class Shooting : MonoBehaviour
     public GameObject Bullet;
     public int StartAmmo = 30;
 
+    public int dmg;
+    public int speed;
+    public float bullLifeTime;
+    public float reloadTime;
+
     [HideInInspector]//можно отобразить, но я убрал, чтоб не отвлекало
     public bool CanShoot = true;
     public int Ammo;
@@ -14,25 +19,20 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         Ammo = StartAmmo;
+        Bullet.GetComponent<Bullet>().Dmg = dmg;
+        Bullet.GetComponent<Bullet>().Speed = speed;
+        Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
     }
     private void Update()
     {
         if (Input.GetButtonDown("Fire1") && CanShoot && Ammo > 0)
         {
-            Bullet.GetComponent<Bullet>().Dmg = 25;
-            Bullet.GetComponent<Bullet>().Speed = 125;
-            Bullet.GetComponent<Bullet>().lifeTime = 2f;
-
-            Ammo--;
-            Instantiate(Bullet, PivotPoint.position, PivotPoint.rotation);
-            //TODO: Звук выстрела и спавн эффекта выстрела
-            CanShoot = false;
-            StartCoroutine(WaitTillShoot(0.1f));
+            Shoot();
         }
         else if (Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || (Input.GetButtonDown("Fire1") && Ammo <= 0))
         {
             if (CanShoot)
-                StartCoroutine(Reload(2f));
+                StartCoroutine(Reload(reloadTime));
             CanShoot = false;
         }
     }
@@ -46,5 +46,14 @@ public class Shooting : MonoBehaviour
     {
         yield return new WaitForSeconds(_time);
         CanShoot = true;
+    }
+
+    public virtual void Shoot()
+    {
+        Ammo--;
+        Instantiate(Bullet, PivotPoint.position, PivotPoint.rotation);
+        //TODO: Звук выстрела и спавн эффекта выстрела
+        CanShoot = false;
+        StartCoroutine(WaitTillShoot(0.1f));
     }
 }

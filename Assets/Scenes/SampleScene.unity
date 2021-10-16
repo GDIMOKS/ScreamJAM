@@ -155,7 +155,7 @@ RectTransform:
   m_Children:
   - {fileID: 1307272562}
   m_Father: {fileID: 817295292}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -235,13 +235,14 @@ GameObject:
   - component: {fileID: 659204544}
   - component: {fileID: 659204543}
   - component: {fileID: 659204542}
+  - component: {fileID: 659204545}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: ShotGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &659204541
 Transform:
   m_ObjectHideFlags: 0
@@ -289,7 +290,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a0ba9668446829f4cba88b554826f73a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -319,6 +320,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659204540}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &659204545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659204540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d807fd97d0e877469469567b3576f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PivotPoint: {fileID: 975285446}
+  Bullet: {fileID: 6549982429472478437, guid: 4e98a77bb846f1c4391857ef1ab990cb, type: 3}
+  StartAmmo: 30
+  dmg: 5
+  speed: 200
+  bullLifeTime: 1
+  reloadTime: 5
+  CanShoot: 1
+  Ammo: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +627,7 @@ Transform:
   m_Children:
   - {fileID: 785282955}
   - {fileID: 659204541}
+  - {fileID: 1937112385}
   - {fileID: 58787307}
   m_Father: {fileID: 901963402}
   m_RootOrder: 0
@@ -679,6 +702,7 @@ GameObject:
   - component: {fileID: 901963398}
   - component: {fileID: 901963406}
   - component: {fileID: 901963407}
+  - component: {fileID: 901963409}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -826,8 +850,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PivotPoint: {fileID: 975285446}
   Bullet: {fileID: 6549982429472478437, guid: 4e98a77bb846f1c4391857ef1ab990cb, type: 3}
-  bullet: {fileID: 0}
   StartAmmo: 30
+  dmg: 20
+  speed: 125
+  bullLifeTime: 5
+  reloadTime: 2
   CanShoot: 1
   Ammo: 0
 --- !u!114 &901963406
@@ -869,17 +896,34 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901963397}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d807fd97d0e877469469567b3576f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PivotPoint: {fileID: 975285446}
   Bullet: {fileID: 6549982429472478437, guid: 4e98a77bb846f1c4391857ef1ab990cb, type: 3}
-  bullet: {fileID: 0}
   StartAmmo: 20
+  dmg: 30
+  speed: 200
+  bullLifeTime: 1
+  reloadTime: 3
   CanShoot: 1
   Ammo: 0
+--- !u!114 &901963409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901963397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a37d4ed3fa18f4485c198cbff52098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotGun: {fileID: 659204540}
+  pistol: {fileID: 1937112384}
 --- !u!1 &975285445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,6 +1048,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1178354415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1178354416}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1178354416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178354415}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.691}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1937112385}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1180473590
 GameObject:
@@ -1669,6 +1743,124 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1937112384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1937112385}
+  - component: {fileID: 1937112389}
+  - component: {fileID: 1937112388}
+  - component: {fileID: 1937112387}
+  - component: {fileID: 1937112386}
+  m_Layer: 0
+  m_Name: Pistol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1937112385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937112384}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.527, y: -0.4, z: 0.375}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.5}
+  m_Children:
+  - {fileID: 1178354416}
+  m_Father: {fileID: 817295292}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1937112386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937112384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b82b5add5e2f4a42821c308d1a8db47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PivotPoint: {fileID: 1178354416}
+  Bullet: {fileID: 6549982429472478437, guid: 4e98a77bb846f1c4391857ef1ab990cb, type: 3}
+  StartAmmo: 30
+  dmg: 25
+  speed: 125
+  bullLifeTime: 3
+  reloadTime: 5
+  CanShoot: 1
+  Ammo: 0
+--- !u!65 &1937112387
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937112384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1937112388
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937112384}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f74005bfe7d42574c91d5b7a99480210, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1937112389
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937112384}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2075108978
 GameObject:
   m_ObjectHideFlags: 0
