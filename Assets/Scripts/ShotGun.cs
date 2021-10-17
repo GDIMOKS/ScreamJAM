@@ -18,4 +18,18 @@ public class ShotGun : Shooting
         CanShoot = false;
         StartCoroutine(WaitTillShoot(1f));
     }
+
+    public override void AltShoot()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            //angle.eulerAngles = PivotPoint.rotation.eulerAngles + new Vector3(Random.Range(0, 30), Random.Range(0, 30), 0);
+            Instantiate(Bullet, PivotPoint.position + new Vector3(Random.Range(-0.25f, 0.25f), 0, 0), PivotPoint.rotation);
+        }
+        Ammo--;
+
+        //TODO: Звук выстрела и спавн эффекта выстрела
+        CanShoot = false;
+        StartCoroutine(WaitTillShoot(2f));
+    }
 }
