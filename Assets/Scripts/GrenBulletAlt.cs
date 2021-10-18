@@ -1,15 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class GrenBulletAlt : MonoBehaviour
 {
-    [HideInInspector]
     public float Speed;
-    [HideInInspector]
     public int Dmg;
-    [HideInInspector]
     public float lifeTime;
-
-
+    public float radius;
     private float currentTime = 0f;
 
     private Rigidbody rg;
@@ -26,11 +24,8 @@ public class Bullet : MonoBehaviour
         if (Physics.Linecast(LastPos, this.transform.position, out hit))
         {
             Debug.Log(hit.transform.name);
-            
-            if (hit.transform.GetComponent<CreatureLife>())
-            {
-                hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
-            }
+
+            ExplosionDamage(hit.point, radius);
 
             Destroy(this.gameObject);
         }
@@ -38,13 +33,11 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            if (hit.transform.GetComponent<CreatureLife>())
-            {
-                hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
-            }
+            ExplosionDamage(hit.point, radius);
 
             Destroy(this.gameObject);
         }
+
         LastPos = transform.position;
 
         currentTime += Time.fixedDeltaTime;
@@ -52,5 +45,20 @@ public class Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    void ExplosionDamage(Vector3 center, float radius)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.transform.GetComponent<CreatureLife>())
+            {
+                hitCollider.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+                hitCollider.GetComponent<Rigidbody>().AddForce((hitCollider.transform.position - center) * 300, ForceMode.Impulse);
+                
+            }   
+        }
+        Destroy(gameObject);
     }
 }

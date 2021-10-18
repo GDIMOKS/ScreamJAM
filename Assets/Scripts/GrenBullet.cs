@@ -4,23 +4,70 @@ using UnityEngine;
 
 public class GrenBullet : MonoBehaviour
 {
+    [HideInInspector]
     public float Speed;
+    [HideInInspector]
     public int Dmg;
+    [HideInInspector]
     public float lifeTime;
-    float currentTime = 0f;
-    private Rigidbody rb;
-    public bool manyBullets = true;
-    public GameObject gb;
 
-    
+    private float currentTime = 0f;
+    private Rigidbody rb;
+    private bool manyBullets = true;
+    private GameObject gb;
+    private Vector3 LastPos;
+    public float radius;
+    public int cntBullets;
+
+
     private void Start()
     {
+        LastPos = this.transform.position;
         rb = GetComponent<Rigidbody>();
+
+        if (!manyBullets)
+        {
+            rb.gameObject.GetComponent<GrenBullet>().Speed /= 5;
+            rb.GetComponent<GrenBullet>().Dmg /= cntBullets;
+            rb.GetComponent<Transform>().localScale = new Vector3(0.175f, 0.175f, 0.175f);
+            rb.GetComponent<GrenBullet>().radius /= 2;
+        }
         rb.AddRelativeForce(Vector3.forward * Speed, ForceMode.Impulse);
+
     }
 
     private void FixedUpdate()
     {
+        RaycastHit hit;
+
+        if (Physics.Linecast(LastPos, this.transform.position, out hit))
+        {
+            Debug.Log(hit.transform.name);
+
+            if (hit.transform.GetComponent<CreatureLife>())
+            {
+                hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                ExplosionDamage(this.transform.position, radius);
+
+                if (manyBullets)
+                {
+                    FireWorks(hit);
+
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    ExplosionDamage(this.transform.position, radius);
+                }
+            }
+        }
+
+        LastPos = transform.position;
+
         currentTime += Time.fixedDeltaTime;
 
         if (currentTime >= lifeTime)
@@ -28,38 +75,42 @@ public class GrenBullet : MonoBehaviour
             Destroy(gameObject);
             currentTime = 0;
         }
-
-
     }
-    private void OnCollisionEnter(Collision collision)
+    void ExplosionDamage(Vector3 center, float radius)
     {
-        Debug.Log(collision.gameObject.name);
-
-        if (collision.gameObject.transform.GetComponent<CreatureLife>())
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        foreach (var hitCollider in hitColliders)
         {
-            collision.gameObject.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
-            Debug.Log(gameObject.GetComponent<GrenBullet>().Dmg);
-            Destroy(gameObject);            
-        }
-        else
-        {
-            if (manyBullets)
+            if (hitCollider.transform.GetComponent<CreatureLife>())
             {
-                Quaternion angle = new Quaternion();
-                manyBullets = false;
-
-                for (int i = 0; i < 10; i++)
-                {
-                    angle.eulerAngles = rb.rotation.eulerAngles + new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
-                    //rb.gameObject.GetComponent<GrenBullet>().Speed = Speed / 100;
-                    gb = Instantiate<GameObject>(rb.gameObject, rb.position, angle);
-                    gb.GetComponent<GrenBullet>().Dmg = 50;
-                    //gb.GetComponent<Rigidbody>().mass = 5;
-                    gb.GetComponent<Transform>().localScale = new Vector3(0.175f, 0.175f, 0.175f);
-                    //gb.GetComponent<GrenBullet>().Speed = 5;
-                    //gb.GetComponent<GrenBullet>().Speed = Speed / 100;
-                }
+                hitCollider.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+            }
+            if (!manyBullets)
+            {
+                Debug.Log(gameObject.name + " задел " + hitCollider.name);
+                Destroy(this.gameObject);
             }
         }
+    }
+
+    public void FireWorks(RaycastHit hit)
+    {
+        Quaternion angle = new Quaternion();
+
+        manyBullets = false;
+
+        for (int i = 0; i < cntBullets; i++)
+        {
+            gb = Instantiate<GameObject>(rb.gameObject, hit.point, angle);
+            gb.GetComponent<GrenBullet>().manyBullets = false;
+            gb.transform.LookAt(hit.point + hit.normal + new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 1f), Random.Range(-1f, 1f)));
+            gb.transform.position = hit.point;
+        }
+    }
+
+    public IEnumerator WaitTillShoot(float _time)
+    {
+        yield return new WaitForSeconds(_time);
+        Destroy(this.gameObject);
     }
 }

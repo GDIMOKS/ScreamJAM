@@ -11,6 +11,8 @@ public class Shooting : MonoBehaviour
     public int speed;
     public float bullLifeTime;
     public float reloadTime;
+    public float shootTime;
+    public float altShootTime;
 
     [HideInInspector]//можно отобразить, но я убрал, чтоб не отвлекало
     public bool CanShoot = true;
@@ -76,7 +78,7 @@ public class Shooting : MonoBehaviour
         Instantiate(Bullet, PivotPoint.position, PivotPoint.rotation);
         //TODO: Звук выстрела и спавн эффекта выстрела
         CanShoot = false;
-        StartCoroutine(WaitTillShoot(0.1f));
+        StartCoroutine(WaitTillShoot(shootTime));
     }
 
     public virtual void AltShoot()
@@ -91,11 +93,11 @@ public class Shooting : MonoBehaviour
         for (int i = 0; i < bullets; i++)
         {
             Ammo--;
-            Instantiate(Bullet, PivotPoint.position - new Vector3(0, 0, 0.1f * i), PivotPoint.rotation);
+            Instantiate(Bullet, PivotPoint.position - transform.TransformDirection(new Vector3(0, 0, 1f * i)), PivotPoint.rotation);
         }
         
         //TODO: Звук выстрела и спавн эффекта выстрела
         CanShoot = false;
-        StartCoroutine(WaitTillShoot(1f));
+        StartCoroutine(WaitTillShoot(altShootTime));
     }
 }
