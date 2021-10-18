@@ -207,6 +207,8 @@ MonoBehaviour:
   speed: 300
   bullLifeTime: 20
   reloadTime: 3
+  shootTime: 0.1
+  altShootTime: 0.2
   CanShoot: 1
   Ammo: 0
   ammoInColler: 60
@@ -424,11 +426,17 @@ MonoBehaviour:
   StartAmmo: 25
   dmg: 30
   speed: 30
-  bullLifeTime: 5
+  bullLifeTime: 30
   reloadTime: 5
+  shootTime: 1
+  altShootTime: 2
   CanShoot: 1
   Ammo: 0
-  ammoInColler: 5
+  ammoInColler: 300
+  altBullet: {fileID: 7407537996422185119, guid: f1652dbdadac72147a96442d1b7e3b59, type: 3}
+  altDmg: 50
+  altSpeed: 100
+  altBullLifeTime: 10
 --- !u!65 &340971171
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -683,6 +691,8 @@ MonoBehaviour:
   speed: 200
   bullLifeTime: 1
   reloadTime: 5
+  shootTime: 0.2
+  altShootTime: 1
   CanShoot: 1
   Ammo: 0
   ammoInColler: 6
@@ -2231,6 +2241,8 @@ MonoBehaviour:
   speed: 0
   bullLifeTime: 0
   reloadTime: 0
+  shootTime: 0
+  altShootTime: 0
   CanShoot: 1
   Ammo: 0
   ammoInColler: 0
@@ -2619,6 +2631,8 @@ MonoBehaviour:
   speed: 125
   bullLifeTime: 3
   reloadTime: 5
+  shootTime: 0.1
+  altShootTime: 0.5
   CanShoot: 1
   Ammo: 0
   ammoInColler: 15
