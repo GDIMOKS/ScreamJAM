@@ -11,6 +11,11 @@ public class CameraMovement : MonoBehaviour
     private float yaw;
     private float pitch;
 
+    private void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     void Update()
     {
         yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
