@@ -8,6 +8,7 @@ public class Shooting : MonoBehaviour
     public int StartAmmo;
 
     public int dmg;
+    public int altDmg;
     public int speed;
     public float bullLifeTime;
     public float reloadTime;
@@ -44,7 +45,7 @@ public class Shooting : MonoBehaviour
         }
         else if (Input.GetButtonDown("Fire2") && CanShoot && Ammo > 0)
         {
-            Bullet.GetComponent<Bullet>().Dmg = dmg;
+            Bullet.GetComponent<Bullet>().Dmg = altDmg;
             Bullet.GetComponent<Bullet>().Speed = speed;
             Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
             AltShoot();
@@ -75,7 +76,7 @@ public class Shooting : MonoBehaviour
     {
         CanShoot = true;
     }
-    public void ReloadEnd()
+    public virtual void ReloadEnd()
     {
         if (StartAmmo > 0)
         {

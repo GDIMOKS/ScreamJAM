@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AutoRifle : Shooting
 {
+    [SerializeField]
+    private GameObject altBullet;
+
     private void Update()
     {
         if (Input.GetButton("Fire1") && CanShoot && Ammo > 0)
@@ -15,9 +18,9 @@ public class AutoRifle : Shooting
         }
         else if (Input.GetButtonDown("Fire2") && CanShoot && Ammo > 0)
         {
-            Bullet.GetComponent<Bullet>().Dmg = dmg;
-            Bullet.GetComponent<Bullet>().Speed = speed;
-            Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
+            altBullet.GetComponent<AltAutorifleBullet>().Dmg = altDmg;
+            altBullet.GetComponent<AltAutorifleBullet>().Speed = speed;
+            altBullet.GetComponent<AltAutorifleBullet>().lifeTime = bullLifeTime;
             AltShoot();
         }
         else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot)
@@ -31,7 +34,7 @@ public class AutoRifle : Shooting
     public override void AltShoot()
     {
         Ammo--;
-        Instantiate(Bullet, PivotPoint.position, PivotPoint.rotation);
+        Instantiate(altBullet, PivotPoint.position, PivotPoint.rotation);
 
 
         //TODO: Звук выстрела и спавн эффекта выстрела

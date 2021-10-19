@@ -9,10 +9,11 @@ public class WeaponChanger : MonoBehaviour
     public GameObject pistol;
     public GameObject grenLauncher;
     public GameObject autoRifle;
+    public GameObject flameThrower;
 
     void Start()
     {
-        weapons = new GameObject[] {shotGun, pistol, grenLauncher, autoRifle};
+        weapons = new GameObject[] {shotGun, pistol, grenLauncher, autoRifle, flameThrower};
     }
 
     void Update()
@@ -33,6 +34,10 @@ public class WeaponChanger : MonoBehaviour
         {
             ChooseWeapon(autoRifle);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ChooseWeapon(flameThrower);
+        }
     }
 
     public void ChooseWeapon(GameObject obj)
@@ -42,7 +47,11 @@ public class WeaponChanger : MonoBehaviour
             if (weapons[i].Equals(obj))
             {
                 weapons[i].SetActive(true);
-                weapons[i].GetComponent<Shooting>().CanShoot = true;
+                Shooting sht;
+                if (weapons[i].TryGetComponent<Shooting>(out sht))
+                {
+                    sht.CanShoot = true;
+                }
             }
             else
             {

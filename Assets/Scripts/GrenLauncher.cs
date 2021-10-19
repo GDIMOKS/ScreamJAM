@@ -7,7 +7,7 @@ public class GrenLauncher : Shooting
     //public GameObject Bullet;
     [SerializeField]
     private GameObject altBullet;
-    public int altDmg;
+    //public int altDmg;
     public int altSpeed;
     public float altBullLifeTime;
 

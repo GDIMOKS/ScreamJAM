@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnEnemies : MonoBehaviour
 {
     public Transform spawnPoint;
+    public Vector3 spawn;
     public GameObject Enemy;
     int deads = 0;
     public int count = 5;
@@ -16,8 +17,9 @@ public class SpawnEnemies : MonoBehaviour
         enemy = new GameObject[count];   
     }
 
-    void Update()
-    { 
+    void FixedUpdate()
+    {
+        Quaternion quaternion = new Quaternion();
         for (int i = 0; i < count; i++)
         {
             if (enemy[i] == null)
@@ -30,8 +32,7 @@ public class SpawnEnemies : MonoBehaviour
         {
             for (int i = 0; i < count; i++)
             {
-                enemy[i] = Instantiate<GameObject>(Enemy);
-                enemy[i].transform.position = spawnPoint.position + new Vector3(Random.Range(-25, 25), spawnPoint.position.y, Random.Range(-25, 25));
+                enemy[i] = Instantiate<GameObject>(Enemy, spawnPoint.position + new Vector3(Random.Range(-25, 25), spawnPoint.position.y, Random.Range(-25, 25)), quaternion);
             }
         }
 
