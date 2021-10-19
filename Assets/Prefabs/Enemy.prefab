@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 6054844259775228809}
   - component: {fileID: 6054844259775228808}
   - component: {fileID: 6054844259775228815}
+  - component: {fileID: 6523991041685783077}
   - component: {fileID: 6054844259775228811}
   - component: {fileID: 6054844259775228804}
   - component: {fileID: 6054844259775228805}
@@ -211,6 +212,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6523991041685783077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6054844259775228814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3469b80816872428786cb92bead2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastPos: {x: 0, y: 0, z: 0}
+  isGrounded: 0
+  isStaying: 0
 --- !u!114 &6054844259775228811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,10 +239,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34b30fadc2ca63468576909d9cbabcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastPos: {x: 0, y: 0, z: 0}
   distance: 0
   Radius: 30
   freeze: 0
   isGrounded: 0
+  isStaying: 0
 --- !u!195 &6054844259775228804
 NavMeshAgent:
   m_ObjectHideFlags: 0

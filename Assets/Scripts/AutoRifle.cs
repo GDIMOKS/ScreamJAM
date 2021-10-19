@@ -27,4 +27,15 @@ public class AutoRifle : Shooting
             CanShoot = false;
         }
     }
+
+    public override void AltShoot()
+    {
+        Ammo--;
+        Instantiate(Bullet, PivotPoint.position, PivotPoint.rotation);
+
+
+        //TODO: Звук выстрела и спавн эффекта выстрела
+        CanShoot = false;
+        StartCoroutine(WaitTillShoot(altShootTime));
+    }
 }

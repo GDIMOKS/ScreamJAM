@@ -9,57 +9,80 @@ public class Listener : MonoBehaviour
 
     void FixedUpdate()
     {
+
         if (hitColliders != null)
         {
             foreach (var hitCollider in hitColliders)
             {
-                Patroler patroler = hitCollider.GetComponent<Patroler>();
-                Rigidbody rb = hitCollider.GetComponent<Rigidbody>();
-
-                if (rb != null && rb.name != "Player")
+                if (hitCollider != null)
                 {
-                    if (rb != null && rb.GetComponent<NavMeshAgent>())
+                    Patroler patroler;
+                    Rigidbody rb;
+                    EnemyState enstate;
+                    hitCollider.TryGetComponent<Patroler>(out patroler);
+                    hitCollider.TryGetComponent<Rigidbody>(out rb);
+                    hitCollider.TryGetComponent<EnemyState>(out enstate);
+                    if (hitCollider.TryGetComponent<Rigidbody>(out rb) && hitCollider.TryGetComponent<Patroler>(out patroler) && hitCollider.TryGetComponent<EnemyState>(out enstate))
                     {
-                        
-                        if (!patroler.isGrounded && !patroler.isStaying)
+                        if (rb != null && rb.name != "Player")
                         {
-                            StartCoroutine(WaitingWhileFall(patroler, rb));
-                        }
-                        else if (patroler.isGrounded)
-                        {
-                            StartCoroutine(WaitingWhileStay(patroler, rb));
-                        }
+                            if (rb != null && rb.GetComponent<NavMeshAgent>())
+                            {
 
-                        //StartCoroutine(WaitingWhileFall(patroler, rb));
-                        //StartCoroutine(WaitingWhileStay(2f, patroler, rb));
-
+                                if (!enstate.isGrounded && !enstate.isStaying)
+                                {
+                                    StartCoroutine(WaitingWhileFall(rb));
+                                }
+                                else if (enstate.isGrounded)
+                                {
+                                    StartCoroutine(WaitingWhileStay(rb));
+                                }
+                                else if (!enstate.isGrounded && enstate.isStaying)
+                                {
+                                    StartCoroutine(WaitingWhileStatic(rb));
+                                }
+                            }
+                        }
                     }
-                    //hitCollider.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
                 }
             }
-
-            
         }  
     }
 
-    private void LateUpdate()
+    public IEnumerator WaitingWhileStatic(Rigidbody rb)
     {
-        //hitColliders = null;
+        yield return new WaitForSeconds(0.5f);
+        //rb.isKinematic = false;
     }
 
-    public IEnumerator WaitingWhileFall(Patroler patroler, Rigidbody rb)
-    {   
-        yield return new WaitWhile(() => patroler.isGrounded != true);
+    public IEnumerator WaitingWhileFall(Rigidbody rb)
+    {
+        EnemyState enstate = rb.GetComponent<EnemyState>();
+        Patroler patroler = rb.GetComponent<Patroler>();
+        yield return new WaitWhile(() => enstate.isGrounded != true);
+
+        if (patroler != null)
+        {
+            patroler.enabled = true;
+        }
         
-        rb.isKinematic = true;
-        patroler.freeze = false;
+        //rb.isKinematic = true;
+        //patroler.freeze = false;
+        
     }
 
-    public IEnumerator WaitingWhileStay(Patroler patroler, Rigidbody rb)
+    public IEnumerator WaitingWhileStay(Rigidbody rb)
     {
-        yield return new WaitUntil(() => patroler.isStaying == true);
+        EnemyState enstate = rb.GetComponent<EnemyState>();
+        Patroler patroler = rb.GetComponent<Patroler>();
+        yield return new WaitUntil(() => enstate.isStaying == true);
 
-        rb.isKinematic = true;
-        patroler.freeze = false;
+        if (patroler != null)
+        {
+            patroler.enabled = true;
+        }
+        //rb.isKinematic = true;
+        //patroler.freeze = false;
+
     }
 }

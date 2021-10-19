@@ -52,23 +52,33 @@ public class GrenBulletAlt : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            Rigidbody rb = hitCollider.GetComponent<Rigidbody>();
-            
-            if (rb != null && rb.name != "Player")
+            Rigidbody rb;
+            CreatureLife crl;
+            if (hitCollider.TryGetComponent<Rigidbody>(out rb))
             {
-                if (rb.GetComponent<NavMeshAgent>())
+                if (rb != null && rb.name != "Player" && hitCollider.TryGetComponent<CreatureLife>(out crl))
                 {
-                    Patroler patroler = rb.GetComponent<Patroler>();
-                    rb.isKinematic = false;
-                    rb.gameObject.GetComponent<NavMeshAgent>().enabled = false;
-                    patroler.freeze = true;
-                    rb.AddExplosionForce(550f, center, radius);//, 3.0f);
+                    if (rb.GetComponent<NavMeshAgent>())
+                    {
+                        Patroler patroler = rb.GetComponent<Patroler>();
+                        rb.isKinematic = false;
+                        rb.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                        //patroler.freeze = true;
+                        patroler.enabled = false;
+                        rb.AddExplosionForce(550f, center, radius, 3.0f);
+                    }
+
+                    crl.EditHP(-Dmg);       
                 }
 
-                //hitCollider.transform.GetComponent<CreatureLife>().EditHP(-Dmg); 
-            }
+                if (rb != null && rb.name == "Player")
+                {
+                    rb.AddExplosionForce(400f, center, radius, 3.0f);
+                }
+            }   
         }
 
+        hitColliders = null;
         Destroy(this.gameObject);
     }
 
