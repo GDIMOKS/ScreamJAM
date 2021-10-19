@@ -13,16 +13,25 @@ public class Shooting : MonoBehaviour
     public float reloadTime;
     public float shootTime;
     public float altShootTime;
+    public AudioClip ShotSound;
+    public AudioClip ReloadSound;
+    public AudioClip WaitSound;
 
     [HideInInspector]//можно отобразить, но € убрал, чтоб не отвлекало
     public bool CanShoot = true;
     public int Ammo;
     public int ammoInColler;
+    [HideInInspector]//можно отобразить, но € убрал, чтоб не отвлекало
+    public Animator anim;
+    [HideInInspector]//можно отобразить, но € убрал, чтоб не отвлекало
+    public AudioSource audio;
 
     private void Start()
     {
         StartAmmo -= ammoInColler;
         Ammo = ammoInColler;
+        anim = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -40,12 +49,57 @@ public class Shooting : MonoBehaviour
             Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
             AltShoot();
         }
-        else if ((Input.GetKeyDown(KeyCode.R)/*«аменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot)
+        else if ((Input.GetKeyDown(KeyCode.R)/*«аменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot && StartAmmo > 0)
         {
             //if (CanShoot)
-                StartCoroutine(Reload(reloadTime));
+            Reload();
             CanShoot = false;
         }
+    }
+    public void PlayShot()
+    {
+        audio.clip = ShotSound;
+        audio.Play();
+    }
+    public void PlayReload()
+    {
+        audio.clip = ReloadSound;
+        audio.Play();
+    }
+    public void PlayWait()
+    {
+        audio.clip = WaitSound;
+        audio.Play();
+    }
+    public void WaitEnd()
+    {
+        CanShoot = true;
+    }
+    public void ReloadEnd()
+    {
+        if (StartAmmo > 0)
+        {
+            if (StartAmmo >= ammoInColler)
+            {
+                StartAmmo -= ammoInColler;
+                Ammo = ammoInColler;
+            }
+            else
+            {
+                Ammo = StartAmmo;
+                StartAmmo -= StartAmmo;
+            }
+        }
+
+        CanShoot = true;
+    }
+    public virtual void Reload()
+    {
+        StartCoroutine(Reload(reloadTime));
+    }
+    public virtual void Wait()
+    {
+        StartCoroutine(WaitTillShoot(shootTime));
     }
     public IEnumerator Reload(float _time)//ѕотом заменить это на вызов анимации, и в ней ивент вызывающий метод, который перезар€дит
     {

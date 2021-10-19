@@ -14,9 +14,9 @@ public class ShotGun : Shooting
         }
         Ammo--;
 
-        //TODO: Звук выстрела и спавн эффекта выстрела
+        anim.SetTrigger("Shot");
         CanShoot = false;
-        StartCoroutine(WaitTillShoot(shootTime));
+        //StartCoroutine(WaitTillShoot(shootTime));
     }
 
     public override void AltShoot()
@@ -28,8 +28,16 @@ public class ShotGun : Shooting
         }
         Ammo--;
 
-        //TODO: Звук выстрела и спавн эффекта выстрела
+        anim.SetTrigger("Shot");
         CanShoot = false;
-        StartCoroutine(WaitTillShoot(altShootTime));
+        //(WaitTillShoot(altShootTime));
+    }
+    public override void Reload()
+    {
+        anim.SetTrigger("Reload");
+    }
+    public override void Wait()
+    {
+        anim.SetTrigger("Wait");
     }
 }
