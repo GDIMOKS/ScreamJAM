@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GrenBulletAlt : MonoBehaviour
 {
@@ -20,16 +21,10 @@ public class GrenBulletAlt : MonoBehaviour
     private void FixedUpdate()
     {
         rg.velocity = transform.TransformDirection(Vector3.forward) * Speed * 10 * Time.fixedDeltaTime;
+
         RaycastHit hit;
+
         if (Physics.Linecast(LastPos, this.transform.position, out hit))
-        {
-            Debug.Log(hit.transform.name);
-
-            ExplosionDamage(hit.point, radius);
-
-            Destroy(this.gameObject);
-        }
-        if (Physics.Linecast(this.transform.position, LastPos, out hit))
         {
             Debug.Log(hit.transform.name);
 
@@ -49,16 +44,33 @@ public class GrenBulletAlt : MonoBehaviour
 
     void ExplosionDamage(Vector3 center, float radius)
     {
+        
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+
+        GameObject go = GameObject.Find("ListenerObj");
+        go.GetComponent<Listener>().hitColliders = hitColliders;
+
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.transform.GetComponent<CreatureLife>())
+            Rigidbody rb = hitCollider.GetComponent<Rigidbody>();
+            
+            if (rb != null && rb.name != "Player")
             {
-                hitCollider.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
-                hitCollider.GetComponent<Rigidbody>().AddForce((hitCollider.transform.position - center) * 300, ForceMode.Impulse);
-                
-            }   
+                if (rb.GetComponent<NavMeshAgent>())
+                {
+                    Patroler patroler = rb.GetComponent<Patroler>();
+                    rb.isKinematic = false;
+                    rb.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                    patroler.freeze = true;
+                    rb.AddExplosionForce(550f, center, radius);//, 3.0f);
+                }
+
+                //hitCollider.transform.GetComponent<CreatureLife>().EditHP(-Dmg); 
+            }
         }
-        Destroy(gameObject);
+
+        Destroy(this.gameObject);
     }
+
+    
 }

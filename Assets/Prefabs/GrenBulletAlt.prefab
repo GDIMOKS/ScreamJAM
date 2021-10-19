@@ -109,9 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6714e0dbe02eb44cab0c45dcb474e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 30
-  Dmg: 30
-  lifeTime: 30
+  Speed: 100
+  Dmg: 20
+  lifeTime: 10
   radius: 5
 --- !u!54 &1938725643896933008
 Rigidbody:
@@ -124,7 +124,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
