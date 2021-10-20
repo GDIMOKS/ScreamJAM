@@ -13,7 +13,7 @@ public class ShotGun : Shooting
             Instantiate(Bullet, PivotPoint.position, angle);
         }
         Ammo--;
-
+        anim.SetBool("Reload", false);
         anim.SetTrigger("Shot");
         CanShoot = false;
         //StartCoroutine(WaitTillShoot(shootTime));
@@ -26,30 +26,30 @@ public class ShotGun : Shooting
             Instantiate(Bullet, PivotPoint.position + transform.TransformDirection(new Vector3(Random.Range(-0.25f, 0.25f), 0, 0)), PivotPoint.rotation);
         }
         Ammo--;
-
+        anim.SetBool("Reload", false);
         anim.SetTrigger("Shot");
         CanShoot = false;
         //(WaitTillShoot(altShootTime));
     }
     public override void Reload()
     {
-        anim.SetTrigger("Reload");
+        if (StartAmmo > 0 && Ammo < ammoInColler)
+        {
+            anim.SetBool("Reload", true);
+        }
     }
 
     public override void ReloadEnd()
     {
-        if (StartAmmo > 0)
+        if (StartAmmo > 0 && Ammo < ammoInColler)
         {
-            if (StartAmmo >= ammoInColler)
-            {
-                StartAmmo--;
-                Ammo++;
-            }
-            else
-            {
-                Ammo = StartAmmo;
-                StartAmmo -= StartAmmo;
-            }
+            anim.SetBool("Reload", true);
+            Ammo++;
+            StartAmmo--;
+        }
+        else
+        {
+            anim.SetBool("Reload", false);
         }
 
         CanShoot = true;

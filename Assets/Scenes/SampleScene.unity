@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44615912, g: 0.49070597, b: 0.5464235, a: 1}
+  m_IndirectSpecularColor: {r: 0.44615883, g: 0.49070567, b: 0.546423, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6148,7 +6148,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 83b7f5549bd2f27499cf4c8d57d689d3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.32
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
