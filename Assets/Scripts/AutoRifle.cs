@@ -15,6 +15,7 @@ public class AutoRifle : Shooting
             Bullet.GetComponent<Bullet>().Speed = speed;
             Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
             Shoot();
+            Flash();
         }
         else if (Input.GetButtonDown("Fire2") && CanShoot && Ammo > 0)
         {
@@ -22,11 +23,12 @@ public class AutoRifle : Shooting
             altBullet.GetComponent<AltAutorifleBullet>().Speed = speed;
             altBullet.GetComponent<AltAutorifleBullet>().lifeTime = bullLifeTime;
             AltShoot();
+            Flash();
         }
         else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot)
         {
             //if (CanShoot)
-            StartCoroutine(Reload(reloadTime));
+            Reload();
             CanShoot = false;
         }
     }
@@ -35,10 +37,26 @@ public class AutoRifle : Shooting
     {
         Ammo--;
         Instantiate(altBullet, PivotPoint.position, PivotPoint.rotation);
-
-
+        if (anim != null)
+        {
+            anim.SetTrigger("Shot");
+        }
+        PlayShot();
         //TODO: Звук выстрела и спавн эффекта выстрела
         CanShoot = false;
-        StartCoroutine(WaitTillShoot(altShootTime));
+        //StartCoroutine(WaitTillShoot(altShootTime));
+    }
+    public override void Shoot()
+    {
+        Ammo--;
+        Instantiate(Bullet, PivotPoint.position, PivotPoint.rotation);
+        if (anim != null)
+        {
+            anim.SetTrigger("Shot");
+        }
+        PlayShot();
+        //TODO: Звук выстрела и спавн эффекта выстрела
+        CanShoot = false;
+        //StartCoroutine(WaitTillShoot(altShootTime));
     }
 }

@@ -17,6 +17,7 @@ public class Shooting : MonoBehaviour
     public AudioClip ShotSound;
     public AudioClip ReloadSound;
     public AudioClip WaitSound;
+    public GameObject MuzzleFlash;
 
     [HideInInspector]//можно отобразить, но я убрал, чтоб не отвлекало
     public bool CanShoot = true;
@@ -42,6 +43,7 @@ public class Shooting : MonoBehaviour
             Bullet.GetComponent<Bullet>().Speed = speed;
             Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
             Shoot();
+            Flash();
         }
         else if (Input.GetButtonDown("Fire2") && CanShoot && Ammo > 0)
         {
@@ -49,12 +51,20 @@ public class Shooting : MonoBehaviour
             Bullet.GetComponent<Bullet>().Speed = speed;
             Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
             AltShoot();
+            Flash();
         }
         else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot && StartAmmo > 0)
         {
             //if (CanShoot)
             Reload();
             CanShoot = false;
+        }
+    }
+    public void Flash()
+    {
+        if (MuzzleFlash != null)
+        {
+            Instantiate(MuzzleFlash, PivotPoint.position, PivotPoint.rotation);
         }
     }
     public void PlayShot()
@@ -96,7 +106,14 @@ public class Shooting : MonoBehaviour
     }
     public virtual void Reload()
     {
-        StartCoroutine(Reload(reloadTime));
+        if (anim != null)
+        {
+            anim.SetTrigger("Reload");
+        }
+        else
+        {
+            StartCoroutine(Reload(reloadTime));
+        }
     }
     public virtual void Wait()
     {
@@ -133,13 +150,20 @@ public class Shooting : MonoBehaviour
         Instantiate(Bullet, PivotPoint.position, PivotPoint.rotation);
         //TODO: Звук выстрела и спавн эффекта выстрела
         CanShoot = false;
-        StartCoroutine(WaitTillShoot(shootTime));
+        if (anim != null)
+        {
+            anim.SetTrigger("Shot");
+        }
+        //StartCoroutine(WaitTillShoot(shootTime));
     }
 
     public virtual void AltShoot()
     {
         int bullets = 3;
-
+        if (anim != null)
+        {
+            anim.SetTrigger("Shot");
+        }
         if (Ammo < 3)
         {
             bullets = Ammo;
@@ -153,6 +177,6 @@ public class Shooting : MonoBehaviour
         
         //TODO: Звук выстрела и спавн эффекта выстрела
         CanShoot = false;
-        StartCoroutine(WaitTillShoot(altShootTime));
+        //StartCoroutine(WaitTillShoot(altShootTime));
     }
 }
