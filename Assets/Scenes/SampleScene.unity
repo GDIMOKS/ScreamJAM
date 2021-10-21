@@ -179,7 +179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &55252348
 Transform:
   m_ObjectHideFlags: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
   altShootTime: 2
   ShotSound: {fileID: 8300000, guid: 4361a3c975c6173429d8945489126aac, type: 3}
   ReloadSound: {fileID: 8300000, guid: ac5b5e5fb2276fb4988d7a5b8aae5299, type: 3}
-  WaitSound: {fileID: 0}
+  WaitSound: {fileID: 8300000, guid: efd167aaab0f4eb42b31517189d56e30, type: 3}
   MuzzleFlash: {fileID: 113298, guid: c70008338b49b7f46bc19adc50b5afd0, type: 3}
   CanShoot: 1
   Ammo: 0
@@ -303,7 +303,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.85
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -13151,7 +13151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1937112385
 Transform:
   m_ObjectHideFlags: 0
