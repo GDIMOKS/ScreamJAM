@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     [HideInInspector]
     public float lifeTime;
 
+    public bool enemies;
+
 
     private float currentTime = 0f;
 
@@ -30,13 +32,18 @@ public class Bullet : MonoBehaviour
             if (hit.transform.GetComponent<CreatureLife>() && hit.transform.name != "Player")
             {
                 hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+                Destroy(this.gameObject);
             }
-            else if (hit.transform.name == "Player")
+            else if (hit.transform.name == "Player" && !enemies)
             {
-                hit.transform.GetComponent<PlayerLife>().EditHP(-(Dmg / 25));
+                hit.transform.GetComponent<PlayerLife>().EditHP(-(Dmg / 5));
+                Destroy(this.gameObject);
+            }
+            else if (hit.transform.name != "Player")
+            {
+                Destroy(this.gameObject);
             }
 
-            Destroy(this.gameObject);
         }
         if (Physics.Linecast(this.transform.position, LastPos, out hit))
         {
@@ -45,13 +52,17 @@ public class Bullet : MonoBehaviour
             if (hit.transform.GetComponent<CreatureLife>() && hit.transform.name != "Player")
             {
                 hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+                Destroy(this.gameObject);
             }
-            else if (hit.transform.name == "Player")
+            else if (hit.transform.name == "Player" && !enemies)
             {
                 hit.transform.GetComponent<PlayerLife>().EditHP(-(Dmg / 5));
+                Destroy(this.gameObject);
             }
-
-            Destroy(this.gameObject);
+            else if (hit.transform.name != "Player")
+            {
+                Destroy(this.gameObject);
+            }
         }
         LastPos = transform.position;
 

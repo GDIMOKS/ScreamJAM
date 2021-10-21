@@ -362,7 +362,6 @@ GameObject:
   - component: {fileID: 7159519036377453346}
   - component: {fileID: 7159519036377453347}
   - component: {fileID: 4820623304056730632}
-  - component: {fileID: 7159519036377453351}
   - component: {fileID: 7159519036377453350}
   m_Layer: 0
   m_Name: Pistol
@@ -469,7 +468,7 @@ MonoBehaviour:
   speed: 125
   bullLifeTime: 3
   reloadTime: 5
-  shootTime: 0.1
+  shootTime: 1
   altShootTime: 0.5
   ShotSound: {fileID: 8300000, guid: 4846d7c3b75c7d54d8bf61554b5d3e55, type: 3}
   ReloadSound: {fileID: 8300000, guid: efd167aaab0f4eb42b31517189d56e30, type: 3}
@@ -502,7 +501,7 @@ MonoBehaviour:
   speed: 125
   bullLifeTime: 3
   reloadTime: 4
-  shootTime: 3
+  shootTime: 1
   altShootTime: 0.5
   ShotSound: {fileID: 8300000, guid: 4846d7c3b75c7d54d8bf61554b5d3e55, type: 3}
   ReloadSound: {fileID: 8300000, guid: efd167aaab0f4eb42b31517189d56e30, type: 3}
@@ -515,25 +514,6 @@ MonoBehaviour:
   ammoInColler: 15
   anim: {fileID: 0}
   Audio: {fileID: 0}
---- !u!95 &7159519036377453351
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7159519036377453345}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 523d4345b6448f8429725e094b8cbf51, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &7159519036377453350
 AudioSource:
   m_ObjectHideFlags: 0
@@ -772,11 +752,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -6633058494979080797, guid: ef3fbd286081fca498d89ad4ec8dabfb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ef3fbd286081fca498d89ad4ec8dabfb, type: 3}
---- !u!1 &646377599438939930 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1582969364825785325, guid: ef3fbd286081fca498d89ad4ec8dabfb, type: 3}
-  m_PrefabInstance: {fileID: 2094089441853809911}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &646377600611616643 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1582969365864522612, guid: ef3fbd286081fca498d89ad4ec8dabfb, type: 3}
@@ -791,6 +766,11 @@ MonoBehaviour:
 --- !u!224 &646377599438939931 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1582969364825785324, guid: ef3fbd286081fca498d89ad4ec8dabfb, type: 3}
+  m_PrefabInstance: {fileID: 2094089441853809911}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &646377599438939930 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1582969364825785325, guid: ef3fbd286081fca498d89ad4ec8dabfb, type: 3}
   m_PrefabInstance: {fileID: 2094089441853809911}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7159519035015959587

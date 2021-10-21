@@ -44,6 +44,7 @@ public class Shooting : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && CanShoot && Ammo > 0)
         {
             Bullet.GetComponent<Bullet>().Dmg = dmg;
+            Bullet.GetComponent<Bullet>().enemies = true;
             Bullet.GetComponent<Bullet>().Speed = speed;
             Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
             Shoot();
@@ -53,6 +54,7 @@ public class Shooting : MonoBehaviour
         {
             Bullet.GetComponent<Bullet>().Dmg = altDmg;
             Bullet.GetComponent<Bullet>().Speed = speed;
+            Bullet.GetComponent<Bullet>().enemies = true;
             Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
             AltShoot();
             Flash();
@@ -162,7 +164,12 @@ public class Shooting : MonoBehaviour
         {
             anim.SetTrigger("Shot");
         }
-        //StartCoroutine(WaitTillShoot(shootTime));
+        else
+        {
+            PlayShot();
+            StartCoroutine(WaitTillShoot(shootTime));
+        }
+        
     }
 
     public virtual void AltShoot()

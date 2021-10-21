@@ -8,9 +8,15 @@ public class FlameThrowerDmg : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         CreatureLife crl;
-        if(other.TryGetComponent<CreatureLife>(out crl))
+        PlayerLife pl;
+        if(other.TryGetComponent<CreatureLife>(out crl) && !other.transform.CompareTag("Player"))
         {
             crl.EditHP(-Dmg);
+        }
+
+        if (other.TryGetComponent<PlayerLife>(out pl) && other.transform.CompareTag("Player"))
+        {
+            pl.EditHP(-Dmg);
         }
     }
 }

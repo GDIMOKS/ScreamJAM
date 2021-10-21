@@ -19,20 +19,23 @@ public class EnemyTurret : AutoRifle
     }
     private void Update()
     {
-        var lookPos = enemy.player.transform.position - transform.position;
-        var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+        //var lookPos = enemy.player.transform.position - transform.position;
+        //var rotation = Quaternion.LookRotation(lookPos);
+        //transform.parent.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+        
+        transform.parent.LookAt(enemy.player.transform);
+        transform.parent.eulerAngles = new Vector3(0f, transform.parent.eulerAngles.y, 0f);
 
-        //transform.LookAt(player.transform);
         if (enemy.nav.enabled && CanShoot && Ammo > 0)
         {
             
             RaycastHit hit;
-            if (Physics.Linecast(this.transform.parent.position, this.transform.parent.position + transform.parent.TransformDirection(Vector3.forward * 20f), out hit))
+            if (Physics.Linecast(this.transform.parent.parent.position, this.transform.parent.parent.position + transform.parent.parent.TransformDirection(Vector3.forward * 20f), out hit))
             {
                 
                 if (hit.transform.CompareTag("Player"))
                 {
+                    Bullet.GetComponent<Bullet>().enemies = false;
                     Bullet.GetComponent<Bullet>().Dmg = dmg;
                     Bullet.GetComponent<Bullet>().Speed = speed;
                     Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;

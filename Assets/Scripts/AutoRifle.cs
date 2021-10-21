@@ -12,6 +12,7 @@ public class AutoRifle : Shooting
         if (Input.GetButton("Fire1") && CanShoot && Ammo > 0)
         {
             Bullet.GetComponent<Bullet>().Dmg = dmg;
+            Bullet.GetComponent<Bullet>().enemies = true;
             Bullet.GetComponent<Bullet>().Speed = speed;
             Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
             Shoot();
@@ -20,6 +21,7 @@ public class AutoRifle : Shooting
         else if (Input.GetButtonDown("Fire2") && CanShoot && Ammo > 0)
         {
             altBullet.GetComponent<AltAutorifleBullet>().Dmg = altDmg;
+            Bullet.GetComponent<Bullet>().enemies = true;
             altBullet.GetComponent<AltAutorifleBullet>().Speed = speed;
             altBullet.GetComponent<AltAutorifleBullet>().lifeTime = bullLifeTime;
             AltShoot();

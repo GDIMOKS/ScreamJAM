@@ -29,7 +29,7 @@ public class AltAutorifleBullet : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            if (hit.transform.GetComponent<CreatureLife>())
+            if (hit.transform.GetComponent<CreatureLife>() && hit.transform.name != "Player")
             {
                 hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
             }
@@ -38,7 +38,7 @@ public class AltAutorifleBullet : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            if (hit.transform.GetComponent<CreatureLife>())
+            if (hit.transform.GetComponent<CreatureLife>() && hit.transform.name != "Player")
             {
                 hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
             }

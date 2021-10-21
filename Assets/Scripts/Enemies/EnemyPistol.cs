@@ -25,6 +25,7 @@ public class EnemyPistol : Shooting
             {
                 if (hit.transform.CompareTag("Player"))
                 {
+                    Bullet.GetComponent<Bullet>().enemies = false;
                     Bullet.GetComponent<Bullet>().Dmg = dmg;
                     Bullet.GetComponent<Bullet>().Speed = speed;
                     Bullet.GetComponent<Bullet>().lifeTime = bullLifeTime;
