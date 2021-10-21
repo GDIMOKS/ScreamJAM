@@ -18,6 +18,8 @@ public class Shooting : MonoBehaviour
     public AudioClip ReloadSound;
     public AudioClip WaitSound;
     public GameObject MuzzleFlash;
+    public Transform MagSpawnPoint;
+    public GameObject Mag;
 
     [HideInInspector]//можно отобразить, но я убрал, чтоб не отвлекало
     public bool CanShoot = true;
@@ -59,6 +61,10 @@ public class Shooting : MonoBehaviour
             Reload();
             CanShoot = false;
         }
+    }
+    public void SpawnMag()
+    {
+        Instantiate(Mag, MagSpawnPoint.position, MagSpawnPoint.rotation);
     }
     public void Flash()
     {
