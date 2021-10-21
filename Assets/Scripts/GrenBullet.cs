@@ -42,6 +42,7 @@ public class GrenBullet : MonoBehaviour
 
         if (Physics.Linecast(LastPos, this.transform.position, out hit))
         {
+            
             Debug.Log(hit.transform.name);
 
             if (hit.transform.GetComponent<CreatureLife>())

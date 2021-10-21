@@ -16,13 +16,13 @@ public class Listener : MonoBehaviour
             {
                 if (hitCollider != null)
                 {
-                    Patroler patroler;
+                    Enemy enemy;
                     Rigidbody rb;
                     EnemyState enstate;
-                    hitCollider.TryGetComponent<Patroler>(out patroler);
+                    hitCollider.TryGetComponent<Enemy>(out enemy);
                     hitCollider.TryGetComponent<Rigidbody>(out rb);
                     hitCollider.TryGetComponent<EnemyState>(out enstate);
-                    if (hitCollider.TryGetComponent<Rigidbody>(out rb) && hitCollider.TryGetComponent<Patroler>(out patroler) && hitCollider.TryGetComponent<EnemyState>(out enstate))
+                    if (hitCollider.TryGetComponent<Rigidbody>(out rb) && hitCollider.TryGetComponent<Enemy>(out enemy) && hitCollider.TryGetComponent<EnemyState>(out enstate))
                     {
                         if (rb != null && rb.name != "Player")
                         {
@@ -58,12 +58,12 @@ public class Listener : MonoBehaviour
     public IEnumerator WaitingWhileFall(Rigidbody rb)
     {
         EnemyState enstate = rb.GetComponent<EnemyState>();
-        Patroler patroler = rb.GetComponent<Patroler>();
+        Enemy enemy = rb.GetComponent<Enemy>();
         yield return new WaitWhile(() => enstate.isGrounded != true);
 
-        if (patroler != null)
+        if (enemy != null)
         {
-            patroler.enabled = true;
+            enemy.enabled = true;
         }
         
         //rb.isKinematic = true;
@@ -74,12 +74,12 @@ public class Listener : MonoBehaviour
     public IEnumerator WaitingWhileStay(Rigidbody rb)
     {
         EnemyState enstate = rb.GetComponent<EnemyState>();
-        Patroler patroler = rb.GetComponent<Patroler>();
+        Enemy enemy = rb.GetComponent<Enemy>();
         yield return new WaitUntil(() => enstate.isStaying == true);
 
-        if (patroler != null)
+        if (enemy != null)
         {
-            patroler.enabled = true;
+            enemy.enabled = true;
         }
         //rb.isKinematic = true;
         //patroler.freeze = false;

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Patroler : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    GameObject player;
-    NavMeshAgent nav;
+    public GameObject player;
+    public NavMeshAgent nav;
     public Vector3 lastPos;
     public float distance;
     public float Radius;

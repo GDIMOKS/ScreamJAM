@@ -27,9 +27,13 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
             
-            if (hit.transform.GetComponent<CreatureLife>())
+            if (hit.transform.GetComponent<CreatureLife>() && hit.transform.name != "Player")
             {
                 hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+            }
+            else if (hit.transform.name == "Player")
+            {
+                hit.transform.GetComponent<PlayerLife>().EditHP(-(Dmg / 25));
             }
 
             Destroy(this.gameObject);
@@ -38,9 +42,13 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            if (hit.transform.GetComponent<CreatureLife>())
+            if (hit.transform.GetComponent<CreatureLife>() && hit.transform.name != "Player")
             {
                 hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+            }
+            else if (hit.transform.name == "Player")
+            {
+                hit.transform.GetComponent<PlayerLife>().EditHP(-(Dmg / 25));
             }
 
             Destroy(this.gameObject);

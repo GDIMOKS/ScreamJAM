@@ -28,17 +28,20 @@ public class Shooting : MonoBehaviour
     [HideInInspector]//можно отобразить, но я убрал, чтоб не отвлекало
     public Animator anim;
     [HideInInspector]//можно отобразить, но я убрал, чтоб не отвлекало
-    public AudioSource audio;
+    public AudioSource Audio;
+    public GameObject parent;
 
     private void Start()
     {
         StartAmmo -= ammoInColler;
         Ammo = ammoInColler;
         anim = GetComponent<Animator>();
-        audio = GetComponent<AudioSource>();
+        Audio = GetComponent<AudioSource>();
+        //parent = transform.parent.gameObject;
     }
     private void Update()
     {
+        //Debug.Log(parent.name);
         if (Input.GetButtonDown("Fire1") && CanShoot && Ammo > 0)
         {
             Bullet.GetComponent<Bullet>().Dmg = dmg;
@@ -75,18 +78,18 @@ public class Shooting : MonoBehaviour
     }
     public void PlayShot()
     {
-        audio.clip = ShotSound;
-        audio.Play();
+        Audio.clip = ShotSound;
+        Audio.Play();
     }
     public void PlayReload()
     {
-        audio.clip = ReloadSound;
-        audio.Play();
+        Audio.clip = ReloadSound;
+        Audio.Play();
     }
     public void PlayWait()
     {
-        audio.clip = WaitSound;
-        audio.Play();
+        Audio.clip = WaitSound;
+        Audio.Play();
     }
     public void WaitEnd()
     {

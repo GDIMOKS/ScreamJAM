@@ -60,11 +60,11 @@ public class GrenBulletAlt : MonoBehaviour
                 {
                     if (rb.GetComponent<NavMeshAgent>())
                     {
-                        Patroler patroler = rb.GetComponent<Patroler>();
+                        Enemy enemy = rb.GetComponent<Enemy>();
                         rb.isKinematic = false;
                         rb.gameObject.GetComponent<NavMeshAgent>().enabled = false;
                         //patroler.freeze = true;
-                        patroler.enabled = false;
+                        enemy.enabled = false;
                         rb.AddExplosionForce(550f, center, radius, 3.0f);
                     }
 
