@@ -29,7 +29,6 @@ public class Shooting : MonoBehaviour
     public Animator anim;
     [HideInInspector]//можно отобразить, но я убрал, чтоб не отвлекало
     public AudioSource Audio;
-    public GameObject parent;
 
     private void Start()
     {
@@ -76,7 +75,7 @@ public class Shooting : MonoBehaviour
             Instantiate(MuzzleFlash, PivotPoint.position, PivotPoint.rotation);
         }
     }
-    public void PlayShot()
+    public virtual void PlayShot()
     {
         Audio.clip = ShotSound;
         Audio.Play();

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AutoRifle : Shooting
 {
-    [SerializeField]
-    private GameObject altBullet;
+    
+    public GameObject altBullet;
 
     private void Update()
     {

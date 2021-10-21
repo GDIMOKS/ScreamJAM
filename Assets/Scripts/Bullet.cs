@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour
             }
             else if (hit.transform.name == "Player")
             {
-                hit.transform.GetComponent<PlayerLife>().EditHP(-(Dmg / 25));
+                hit.transform.GetComponent<PlayerLife>().EditHP(-(Dmg / 5));
             }
 
             Destroy(this.gameObject);
