@@ -39,7 +39,7 @@ public class AutoRifle : Shooting
         Instantiate(altBullet, PivotPoint.position, PivotPoint.rotation);
         if (anim != null)
         {
-            anim.SetTrigger("Shot");
+            anim.SetTrigger("AltShot");
         }
         PlayShot();
         //TODO: Звук выстрела и спавн эффекта выстрела
@@ -57,6 +57,6 @@ public class AutoRifle : Shooting
         PlayShot();
         //TODO: Звук выстрела и спавн эффекта выстрела
         CanShoot = false;
-        //StartCoroutine(WaitTillShoot(altShootTime));
+        StartCoroutine(WaitTillShoot(shootTime));
     }
 }
