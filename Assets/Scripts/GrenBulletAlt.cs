@@ -10,6 +10,7 @@ public class GrenBulletAlt : MonoBehaviour
     public float lifeTime;
     public float radius;
     private float currentTime = 0f;
+    public GameObject Explosion;
 
     private Rigidbody rg;
     private Vector3 LastPos;
@@ -26,6 +27,7 @@ public class GrenBulletAlt : MonoBehaviour
 
         if (Physics.Linecast(LastPos, this.transform.position, out hit))
         {
+            Instantiate(Explosion, transform.position, transform.rotation);
             Debug.Log(hit.transform.name);
 
             ExplosionDamage(hit.point, radius);

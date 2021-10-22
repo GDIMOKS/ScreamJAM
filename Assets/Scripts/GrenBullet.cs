@@ -18,6 +18,7 @@ public class GrenBullet : MonoBehaviour
     private Vector3 LastPos;
     public float radius;
     public int cntBullets;
+    public GameObject Explosion;
 
 
     private void Start()
@@ -44,7 +45,7 @@ public class GrenBullet : MonoBehaviour
         {
             
             Debug.Log(hit.transform.name);
-
+            Instantiate(Explosion, transform.position, transform.rotation);
             if (hit.transform.GetComponent<CreatureLife>())
             {
                 hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
