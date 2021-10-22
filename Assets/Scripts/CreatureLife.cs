@@ -16,7 +16,6 @@ public class CreatureLife : MonoBehaviour
         healPoints = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         anim = GetComponentInChildren<Animator>();
-        TryGetComponent<Animator>(out anim);
     }
 
     public void EditHP(int value)
@@ -56,7 +55,19 @@ public class CreatureLife : MonoBehaviour
                 this.enabled = false;
             }
             else
-                Destroy(gameObject);
+            {
+                TryGetComponent<Animator>(out anim);
+                if (anim != null)
+                {
+                    anim.SetTrigger("Die");
+                    GetComponent<NavMeshAgent>().enabled = false;
+                    this.enabled = false;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 
