@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3493807649567009851}
   - component: {fileID: 3493807649567009852}
   - component: {fileID: 1014564144002961394}
+  - component: {fileID: -7828165208473624418}
+  - component: {fileID: 6995506805812023713}
   m_Layer: 0
   m_Name: FlameThrowerAmmo
   m_TagString: Untagged
@@ -27,14 +29,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3493807649567009854}
-  m_LocalRotation: {x: 0, y: 0.46850055, z: -0, w: -0.88346326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8731239503484472373}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 304.126, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3493807649567009850
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -111,7 +113,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countColler: 1
-  Weapon: flamethrower
+  weaponName: flamethrower
+--- !u!95 &-7828165208473624418
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493807649567009854}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a1b28a74905baa04c926bf17e01fe7d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!122 &6995506805812023713
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493807649567009854}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4281209400
+  m_Size: 1
 --- !u!1001 &9124611067781163998
 PrefabInstance:
   m_ObjectHideFlags: 0

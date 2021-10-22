@@ -10,14 +10,42 @@ public class WeaponChanger : MonoBehaviour
     public GameObject grenLauncher;
     public GameObject autoRifle;
     public GameObject flameThrower;
+    public string keyValue;
+    public int keyValueInt;
 
     void Start()
     {
+        keyValueInt = 1;
         weapons = new GameObject[] {pistol, shotGun, grenLauncher, autoRifle, flameThrower};
     }
 
     void Update()
     {
+        ChooseWeaponScroll(out keyValue);
+
+        switch (keyValue)
+        {
+            case "1":
+                ChooseWeapon(pistol);
+                break;
+
+            case "2":
+                ChooseWeapon(shotGun);
+                break;
+
+            case "3":
+                ChooseWeapon(grenLauncher);
+                break;
+
+            case "4":
+                ChooseWeapon(autoRifle);
+                break;
+
+            case "5":
+                ChooseWeapon(flameThrower);
+                break;
+        }
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChooseWeapon(pistol);
@@ -37,7 +65,7 @@ public class WeaponChanger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             ChooseWeapon(flameThrower);
-        }
+        }*/
     }
 
     public void ChooseWeapon(GameObject obj)
@@ -62,5 +90,31 @@ public class WeaponChanger : MonoBehaviour
                 weapons[i].SetActive(false);
             }
         }
+    }
+
+    public string ChooseWeaponScroll(out string keyValue)
+    {
+        keyValue = Input.inputString;
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            keyValueInt--;
+            if (keyValueInt < 1)
+            {
+                keyValueInt = 5;
+            }
+            keyValue = keyValueInt.ToString();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            keyValueInt++;
+            if (keyValueInt > 5)
+            {
+                keyValueInt = 1;
+            }
+            keyValue = keyValueInt.ToString();
+        }
+
+        return keyValue;
     }
 }

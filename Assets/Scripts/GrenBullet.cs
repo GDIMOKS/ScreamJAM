@@ -82,15 +82,16 @@ public class GrenBullet : MonoBehaviour
     void ExplosionDamage(Vector3 center, float radius)
     {
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        CreatureLife crl;
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.transform.GetComponent<CreatureLife>())
+            if (hitCollider.transform.TryGetComponent<CreatureLife>(out crl))
             {
-                hitCollider.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+                crl.EditHP(-Dmg);
             }
             if (!manyBullets)
             {
-                Debug.Log(gameObject.name + " задел " + hitCollider.name);
+                //Debug.Log(gameObject.name + " задел " + hitCollider.name);
                 Destroy(this.gameObject);
             }
         }

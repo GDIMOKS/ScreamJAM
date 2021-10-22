@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 249804295407594477}
   - component: {fileID: 249804295407594476}
   - component: {fileID: 6405340902753885801}
+  - component: {fileID: 5527090324777643786}
+  - component: {fileID: 5066591823812111044}
   m_Layer: 0
   m_Name: ShotGunAmmo
   m_TagString: Untagged
@@ -27,14 +29,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249804295407594478}
-  m_LocalRotation: {x: 0, y: 0.46850055, z: -0, w: -0.88346326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6037482719690316674}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 304.126, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &249804295407594474
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -111,7 +113,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countColler: 4
-  Weapon: shotgun
+  weaponName: shotgun
+--- !u!95 &5527090324777643786
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249804295407594478}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df820c3a4dd55114eb824504506725ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!122 &5066591823812111044
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249804295407594478}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4282129181
+  m_Size: 1
 --- !u!1 &6283841273283944740
 GameObject:
   m_ObjectHideFlags: 0

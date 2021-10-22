@@ -4055,6 +4055,8 @@ MonoBehaviour:
   grenLauncher: {fileID: 6276454045107083601}
   autoRifle: {fileID: 6276454045258482314}
   flameThrower: {fileID: 6276454046006113594}
+  keyValue: 
+  keyValueInt: 0
 --- !u!1 &6276454044546091380
 GameObject:
   m_ObjectHideFlags: 0
@@ -4070,7 +4072,6 @@ GameObject:
   - component: {fileID: 6276454044546091386}
   - component: {fileID: 6276454044546091389}
   - component: {fileID: 6276454044546091383}
-  - component: {fileID: 6276454044546091391}
   - component: {fileID: 6276454044546091390}
   - component: {fileID: 6276454044546091360}
   m_Layer: 0
@@ -4222,23 +4223,6 @@ MonoBehaviour:
   dead: 0
   healthBar: {fileID: 6276454046288212610}
   maxHealth: 200
-  crl: {fileID: 0}
---- !u!114 &6276454044546091391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6276454044546091380}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e27fcb57b09380f4889f71523cf2d60b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healPoints: 0
-  dead: 0
-  healthBar: {fileID: 0}
-  maxHealth: 100
   crl: {fileID: 0}
 --- !u!4 &6276454044663242874
 Transform:

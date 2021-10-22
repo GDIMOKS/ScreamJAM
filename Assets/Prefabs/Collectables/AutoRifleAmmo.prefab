@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6734351531149653240}
   - component: {fileID: 6734351531149653243}
   - component: {fileID: 1282390322162360499}
+  - component: {fileID: 7046249450985477}
+  - component: {fileID: 8042287144967286961}
   m_Layer: 0
   m_Name: AutoRifleAmmo
   m_TagString: Untagged
@@ -27,14 +29,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6734351531149653245}
-  m_LocalRotation: {x: 0, y: 0.46850055, z: -0, w: -0.88346326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9201558005257551444}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 304.126, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6734351531149653241
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -111,7 +113,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countColler: 3
-  Weapon: autorifle
+  weaponName: autorifle
+--- !u!95 &7046249450985477
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6734351531149653245}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 05ddf9966600e984c89812577975511a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!122 &8042287144967286961
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6734351531149653245}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 3273541150
+  m_Size: 1
 --- !u!1001 &8662736819638131135
 PrefabInstance:
   m_ObjectHideFlags: 0
