@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
             
             if (distance > Radius)
             {
-                nav.Stop();
+                nav.enabled = false;
             }
             else
             {
