@@ -9,6 +9,7 @@ public class CreatureLife : MonoBehaviour
     public HealthBar healthBar;
     public int maxHealth;
     private Animator anim;
+    public GameObject crl;
 
     void Start()
     {
@@ -42,6 +43,10 @@ public class CreatureLife : MonoBehaviour
             {
                 //parent = gameObject.transform.parent.gameObject;
                 Destroy(gameObject.transform.parent.gameObject);
+            }
+            if (crl != null)
+            {
+                Destroy(crl);
             }
             if (anim != null)
             {

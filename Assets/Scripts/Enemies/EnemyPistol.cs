@@ -18,11 +18,12 @@ public class EnemyPistol : Shooting
 
     void Update()
     {
+        /*
         if (enemy.nav.enabled)
         {
             transform.parent.LookAt(enemy.player.transform);
             transform.parent.eulerAngles = new Vector3(0f, transform.parent.eulerAngles.y, 0f);
-        }
+        }*/
         
         if (enemy.nav.enabled && CanShoot && Ammo > 0)
         {

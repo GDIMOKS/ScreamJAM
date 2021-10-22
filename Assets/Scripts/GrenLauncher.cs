@@ -44,6 +44,7 @@ public class GrenLauncher : Shooting
         Ammo--;
 
         //TODO: Звук выстрела и спавн эффекта выстрела
+        PlayShot();
         CanShoot = false;
         if (anim != null)
         {
