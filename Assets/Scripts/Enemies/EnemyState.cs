@@ -7,12 +7,14 @@ public class EnemyState : MonoBehaviour
     public Vector3 lastPos;
     public bool isGrounded;
     public bool isStaying;
+    private Animator anim;
 
 
     // Start is called before the first frame update
     void Start()
     {
         lastPos = transform.position;
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -30,15 +32,27 @@ public class EnemyState : MonoBehaviour
         else
         {
             isGrounded = false;
+            if (anim != null)
+            {
+                anim.SetTrigger("Fall");
+            }
         }
 
         if (transform.position == lastPos)
         {
             isStaying = true;
+            if (anim != null)
+            {
+                anim.SetBool("Run", false);
+            }
         }
         else
         {
             isStaying = false;
+            if (anim != null)
+            {
+                anim.SetBool("Run", true);
+            }
         }
 
         lastPos = transform.position;

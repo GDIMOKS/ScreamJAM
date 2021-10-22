@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class EnemyMelee : MonoBehaviour
 {
-    Enemy enemy;
-    public Collider col;
-    public int dmg;
-    void Start()
+    public int Dmg;
+    Animator anim;
+    private void Start()
     {
-        enemy = transform.GetComponentInParent<Enemy>();
-
-        //anim = GetComponent<Animator>();
-        //Audio = GetComponent<AudioSource>();
+        anim = GetComponentInChildren<Animator>();
     }
-
     private void Update()
     {
-        if (enemy.nav.enabled)
+        RaycastHit hit;
+        if (Physics.Linecast(this.transform.position, this.transform.position + transform.TransformDirection(Vector3.forward * 2f), out hit))
         {
-            col.enabled = true;
-            //enemy.GetComponentInChildren<Melee>().Dmg = dmg;
+
+            if (hit.transform.CompareTag("Player"))
+            {
+                anim.SetTrigger("Attack");
+            }
+
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        CreatureLife crl;
+        PlayerLife pl;
+        if (other.TryGetComponent<CreatureLife>(out crl) && !other.transform.CompareTag("Player"))
+        {
+            crl.EditHP(-Dmg);
+        }
 
-    
+        if (other.TryGetComponent<PlayerLife>(out pl) && other.transform.CompareTag("Player"))
+        {
+            pl.EditHP(-Dmg);
+        }
+    }
 }

@@ -8,11 +8,13 @@ public class CreatureLife : MonoBehaviour
     public bool dead = false;
     public HealthBar healthBar;
     public int maxHealth;
+    private Animator anim;
 
     void Start()
     {
         healPoints = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        anim = GetComponentInChildren<Animator>();
     }
 
     public void EditHP(int value)
@@ -41,7 +43,17 @@ public class CreatureLife : MonoBehaviour
                 //parent = gameObject.transform.parent.gameObject;
                 Destroy(gameObject.transform.parent.gameObject);
             }
-            Destroy(gameObject);
+            if (anim != null)
+            {
+                anim.SetTrigger("Die");
+            }
+            else
+                Destroy(gameObject);
         }
+    }
+
+    public void Delete()
+    {
+        Destroy(gameObject);
     }
 }
