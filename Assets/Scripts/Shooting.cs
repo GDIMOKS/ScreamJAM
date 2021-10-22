@@ -116,13 +116,16 @@ public class Shooting : MonoBehaviour
     }
     public virtual void Reload()
     {
-        if (anim != null)
+        if (Ammo < ammoInColler && StartAmmo > 0)
         {
-            anim.SetTrigger("Reload");
-        }
-        else
-        {
-            StartCoroutine(Reload(reloadTime));
+            if (anim != null)
+            {
+                anim.SetTrigger("Reload");
+            }
+            else
+            {
+                StartCoroutine(Reload(reloadTime));
+            }
         }
     }
     public virtual void Wait()
@@ -175,23 +178,30 @@ public class Shooting : MonoBehaviour
     public virtual void AltShoot()
     {
         int bullets = 3;
-        if (anim != null)
-        {
-            anim.SetTrigger("Shot");
-        }
         if (Ammo < 3)
         {
             bullets = Ammo;
         }
-
-        for (int i = 0; i < bullets; i++)
+        if (anim != null)
         {
-            Ammo--;
-            Instantiate(Bullet, PivotPoint.position - transform.TransformDirection(new Vector3(0, 0, 1f * i)), PivotPoint.rotation);
+            anim.SetTrigger("AltShot");
+        }
+        else
+        {
+            for (int i = 0; i < bullets; i++)
+            {
+                Ammo--;
+                Instantiate(Bullet, PivotPoint.position - transform.TransformDirection(new Vector3(0, 0, 1f * i)), PivotPoint.rotation);
+            }
         }
         
         //TODO: Звук выстрела и спавн эффекта выстрела
         CanShoot = false;
         //StartCoroutine(WaitTillShoot(altShootTime));
+    }
+    public void SpawnAlt()
+    {
+        Ammo--;
+        Instantiate(Bullet, PivotPoint.position - transform.TransformDirection(new Vector3(0, 0, 1f)), PivotPoint.rotation);
     }
 }
