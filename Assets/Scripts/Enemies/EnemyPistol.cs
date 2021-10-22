@@ -21,7 +21,7 @@ public class EnemyPistol : Shooting
         if (enemy.nav.enabled && CanShoot && Ammo > 0)
         {
             RaycastHit hit;
-            if (Physics.Linecast(this.transform.parent.position, this.transform.parent.position + transform.parent.TransformDirection(Vector3.forward * 20f), out hit))
+            if (Physics.Linecast(PivotPoint.transform.position, PivotPoint.transform.position + transform.TransformDirection(Vector3.forward * 20f), out hit))
             {
                 if (hit.transform.CompareTag("Player"))
                 {

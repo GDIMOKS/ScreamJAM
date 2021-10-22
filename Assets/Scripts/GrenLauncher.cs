@@ -19,6 +19,7 @@ public class GrenLauncher : Shooting
             Bullet.GetComponent<GrenBullet>().Speed = speed;
             Bullet.GetComponent<GrenBullet>().lifeTime = bullLifeTime;
             Shoot();
+            Flash();
         }
         else if (Input.GetButtonDown("Fire2") && CanShoot && Ammo > 0)
         {
@@ -26,11 +27,13 @@ public class GrenLauncher : Shooting
             altBullet.GetComponent<GrenBulletAlt>().Speed = altSpeed;
             altBullet.GetComponent<GrenBulletAlt>().lifeTime = altBullLifeTime;
             AltShoot();
+            Flash();
         }
         else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot && Ammo < ammoInColler)
         {
             //if (CanShoot)
-            StartCoroutine(Reload(reloadTime));
+            //StartCoroutine(Reload(reloadTime));
+            anim.SetTrigger("Reload");
             CanShoot = false;
         }
     }
@@ -42,7 +45,14 @@ public class GrenLauncher : Shooting
 
         //TODO: Звук выстрела и спавн эффекта выстрела
         CanShoot = false;
-        StartCoroutine(WaitTillShoot(shootTime));
+        if (anim != null)
+        {
+            anim.SetTrigger("Shot");
+        }
+        else
+        {
+            StartCoroutine(WaitTillShoot(shootTime));
+        }
     }
 
     public override void AltShoot()
@@ -52,6 +62,13 @@ public class GrenLauncher : Shooting
 
         //TODO: Звук выстрела и спавн эффекта выстрела
         CanShoot = false;
-        StartCoroutine(WaitTillShoot(altShootTime));
+        if (anim != null)
+        {
+            anim.SetTrigger("AltShot");
+        }
+        else
+        {
+            StartCoroutine(WaitTillShoot(altShootTime));
+        }
     }
 }
