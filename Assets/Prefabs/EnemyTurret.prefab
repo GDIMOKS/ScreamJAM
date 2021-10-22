@@ -90,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681748724913641534}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.257, y: 0.232, z: -0.529}
+  m_LocalPosition: {x: 0.257, y: 0.232, z: -0.479}
   m_LocalScale: {x: 0.34579992, y: 0.25935, z: 0.34579992}
   m_Children:
   - {fileID: 681748724889298160}
@@ -349,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3111157137569657603}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.04300036, y: 0.232, z: -0.5289992}
+  m_LocalPosition: {x: -0.04300036, y: 0.232, z: -0.4789992}
   m_LocalScale: {x: 0.3458, y: 0.25935, z: 0.3458}
   m_Children:
   - {fileID: 3224015525412079213}
@@ -756,7 +756,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7818854420053082954}
-  m_LocalRotation: {x: 0, y: 0.99727863, z: 0, w: 0.073725626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -765,7 +765,7 @@ Transform:
   - {fileID: 1196731737368821879}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 171.544, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7818854420053082957
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -827,8 +827,8 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 0.4
   m_Height: 1
-  m_Direction: 2
-  m_Center: {x: 0, y: -0.21, z: -0.27}
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!114 &7065260664456342241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,8 +880,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.25
-  m_BaseOffset: 0.61
+  m_Height: 0.59
+  m_BaseOffset: 0.6
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!143 &7818854420053082945
@@ -895,13 +895,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.25
+  m_Height: 1
   m_Radius: 0.4
   m_SlopeLimit: 45
-  m_StepOffset: 0.2
+  m_StepOffset: 0.75
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: -0.15, z: -0.24}
+  m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!114 &7818854420053082946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1721,7 +1721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7853969259642916829, guid: 61c8c56ba06faf84c94c3d79117a9585, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7853969259642916829, guid: 61c8c56ba06faf84c94c3d79117a9585, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1729,7 +1729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7853969259642916829, guid: 61c8c56ba06faf84c94c3d79117a9585, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.110334955
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 7853969259642916829, guid: 61c8c56ba06faf84c94c3d79117a9585, type: 3}
       propertyPath: m_LocalRotation.w

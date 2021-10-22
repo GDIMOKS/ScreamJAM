@@ -23,8 +23,11 @@ public class EnemyTurret : AutoRifle
         //var rotation = Quaternion.LookRotation(lookPos);
         //transform.parent.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
         
-        transform.parent.LookAt(enemy.player.transform);
+        transform.parent.parent.LookAt(enemy.player.transform);
         transform.parent.parent.eulerAngles = new Vector3(0f, transform.parent.parent.eulerAngles.y, 0f);
+
+        transform.parent.LookAt(enemy.player.transform);
+        transform.parent.eulerAngles = new Vector3(transform.parent.eulerAngles.x, transform.parent.parent.eulerAngles.y, transform.parent.parent.eulerAngles.z);
 
         if (enemy.nav.enabled && CanShoot && Ammo > 0)
         {
