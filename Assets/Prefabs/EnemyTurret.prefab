@@ -178,7 +178,7 @@ MonoBehaviour:
   dmg: 10
   altDmg: 50
   speed: 300
-  bullLifeTime: 20
+  bullLifeTime: 7
   reloadTime: 3
   shootTime: 0.2
   altShootTime: 2
@@ -437,7 +437,7 @@ MonoBehaviour:
   dmg: 10
   altDmg: 50
   speed: 300
-  bullLifeTime: 20
+  bullLifeTime: 7
   reloadTime: 3
   shootTime: 0.2
   altShootTime: 2

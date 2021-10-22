@@ -48,6 +48,10 @@ public class CreatureLife : MonoBehaviour
             {
                 Destroy(crl);
             }
+            else
+            {
+                Destroy(gameObject);
+            }
             if (anim != null)
             {
                 anim.SetTrigger("Die");
