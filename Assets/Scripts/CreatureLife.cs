@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class CreatureLife : MonoBehaviour
 {
     public int healPoints;
@@ -16,6 +16,7 @@ public class CreatureLife : MonoBehaviour
         healPoints = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         anim = GetComponentInChildren<Animator>();
+        TryGetComponent<Animator>(out anim);
     }
 
     public void EditHP(int value)
@@ -51,6 +52,8 @@ public class CreatureLife : MonoBehaviour
             if (anim != null)
             {
                 anim.SetTrigger("Die");
+                GetComponent<NavMeshAgent>().enabled = false;
+                this.enabled = false;
             }
             else
                 Destroy(gameObject);
