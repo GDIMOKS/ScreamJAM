@@ -43,12 +43,13 @@ public class GrenBullet : MonoBehaviour
 
         if (Physics.Linecast(LastPos, this.transform.position, out hit))
         {
-            
+            CreatureLife crl;
             Debug.Log(hit.transform.name);
             Instantiate(Explosion, transform.position, transform.rotation);
-            if (hit.transform.GetComponent<CreatureLife>())
+            
+            if (hit.transform.TryGetComponent<CreatureLife>(out crl))
             {
-                hit.transform.GetComponent<CreatureLife>().EditHP(-Dmg);
+                crl.EditHP(-Dmg);
                 Destroy(this.gameObject);
             }
             else

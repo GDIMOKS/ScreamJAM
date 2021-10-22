@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyTurret : AutoRifle
 {
     Enemy enemy;
-    float damping = 0.1f;
+    //float damping = 0.1f;
     //public GameObject player;
 
     void Start()
@@ -23,14 +23,17 @@ public class EnemyTurret : AutoRifle
         //var rotation = Quaternion.LookRotation(lookPos);
         //transform.parent.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
         
+        transform.parent.parent.LookAt(enemy.player.transform);
+        transform.parent.parent.eulerAngles = new Vector3(0f, transform.parent.parent.eulerAngles.y, 0f);
+
         transform.parent.LookAt(enemy.player.transform);
-        transform.parent.eulerAngles = new Vector3(0f, transform.parent.eulerAngles.y, 0f);
+        transform.parent.eulerAngles = new Vector3(transform.parent.eulerAngles.x, transform.parent.parent.eulerAngles.y, transform.parent.parent.eulerAngles.z);
 
         if (enemy.nav.enabled && CanShoot && Ammo > 0)
         {
             
             RaycastHit hit;
-            if (Physics.Linecast(this.transform.parent.parent.position, this.transform.parent.parent.position + transform.parent.parent.TransformDirection(Vector3.forward * 20f), out hit))
+            if (Physics.Linecast(this.transform.position, this.transform.position + transform.TransformDirection(Vector3.forward * 20f), out hit))
             {
                 
                 if (hit.transform.CompareTag("Player"))
