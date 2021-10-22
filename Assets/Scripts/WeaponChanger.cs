@@ -13,7 +13,7 @@ public class WeaponChanger : MonoBehaviour
 
     void Start()
     {
-        weapons = new GameObject[] {shotGun, pistol, grenLauncher, autoRifle, flameThrower};
+        weapons = new GameObject[] {pistol, shotGun, grenLauncher, autoRifle, flameThrower};
     }
 
     void Update()
