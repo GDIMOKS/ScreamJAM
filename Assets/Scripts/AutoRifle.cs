@@ -27,7 +27,7 @@ public class AutoRifle : Shooting
             AltShoot();
             Flash();
         }
-        else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot)
+        else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot && Ammo < ammoInColler)
         {
             //if (CanShoot)
             Reload();

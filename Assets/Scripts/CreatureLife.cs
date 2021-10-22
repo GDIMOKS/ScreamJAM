@@ -35,6 +35,12 @@ public class CreatureLife : MonoBehaviour
     {
         if (!gameObject.CompareTag("Player"))
         {
+            //GameObject parent;
+            if (gameObject.CompareTag("FlyingShit"))
+            {
+                //parent = gameObject.transform.parent.gameObject;
+                Destroy(gameObject.transform.parent.gameObject);
+            }
             Destroy(gameObject);
         }
     }

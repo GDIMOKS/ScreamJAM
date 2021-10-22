@@ -59,7 +59,7 @@ public class Shooting : MonoBehaviour
             AltShoot();
             Flash();
         }
-        else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot && StartAmmo > 0)
+        else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot && StartAmmo > 0 && Ammo < ammoInColler)
         {
             //if (CanShoot)
             Reload();

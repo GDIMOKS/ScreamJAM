@@ -56,11 +56,13 @@ public class GrenBulletAlt : MonoBehaviour
         {
             Rigidbody rb;
             CreatureLife crl;
+            PlayerLife pl;
             if (hitCollider.TryGetComponent<Rigidbody>(out rb))
             {
                 if (rb != null && rb.name != "Player" && hitCollider.TryGetComponent<CreatureLife>(out crl))
                 {
-                    if (rb.GetComponent<NavMeshAgent>())
+                    
+                    if (rb.GetComponent<NavMeshAgent>() && rb.transform.name !="EnemyGren")
                     {
                         Enemy enemy = rb.GetComponent<Enemy>();
                         rb.isKinematic = false;
@@ -70,12 +72,13 @@ public class GrenBulletAlt : MonoBehaviour
                         rb.AddExplosionForce(550f, center, radius, 3.0f);
                     }
 
-                    crl.EditHP(-Dmg);       
+                    crl.EditHP(-Dmg);
                 }
 
-                if (rb != null && rb.name == "Player")
+                if (rb != null && rb.name == "Player" && hitCollider.TryGetComponent<PlayerLife>(out pl))
                 {
                     rb.AddExplosionForce(400f, center, radius, 3.0f);
+                    pl.EditHP(-Dmg);
                 }
             }   
         }

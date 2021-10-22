@@ -5,8 +5,8 @@ using UnityEngine;
 public class GrenLauncher : Shooting
 {
     //public GameObject Bullet;
-    [SerializeField]
-    private GameObject altBullet;
+    
+    public GameObject altBullet;
     //public int altDmg;
     public int altSpeed;
     public float altBullLifeTime;
@@ -27,7 +27,7 @@ public class GrenLauncher : Shooting
             altBullet.GetComponent<GrenBulletAlt>().lifeTime = altBullLifeTime;
             AltShoot();
         }
-        else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot)
+        else if ((Input.GetKeyDown(KeyCode.R)/*Заменить на баттон*/ || ((Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2")) && Ammo <= 0)) && CanShoot && Ammo < ammoInColler)
         {
             //if (CanShoot)
             StartCoroutine(Reload(reloadTime));

@@ -13,8 +13,6 @@ public class EnemyFlame : FlameThrower
     }
     private void Update()
     {
-        
-
         if (enemy.nav.enabled && CanShoot && Ammo > 0)
         {
             for (int i = 0; i < flame.Length; i++)
