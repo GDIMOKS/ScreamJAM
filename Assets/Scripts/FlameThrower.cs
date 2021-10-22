@@ -14,6 +14,7 @@ public class FlameThrower : Shooting
             flame[0].GetComponent<MeshCollider>().enabled = true;
             ps[0].Play(true);
             Shoot();
+            anim.SetBool("Shot", true);
         }
         else if (Input.GetButton("Fire2") && CanShoot && Ammo > 0)
         {
@@ -25,6 +26,7 @@ public class FlameThrower : Shooting
             flame[2].GetComponent<MeshCollider>().enabled = true;
             ps[2].Play(true);
             AltShoot();
+            anim.SetBool("Shot", true);
         }
         /*
         else if (Input.GetButton("Fire1") &&  Input.GetButton("Fire2") && CanShoot && Ammo > 0)
@@ -43,6 +45,12 @@ public class FlameThrower : Shooting
             //if (CanShoot)
             Reload();
             CanShoot = false;
+            anim.SetBool("Shot", false);
+            anim.SetTrigger("Reload");
+        }
+        else
+        {
+            anim.SetBool("Shot", false);
         }
 
         if (Input.GetButtonUp("Fire1") || !CanShoot)

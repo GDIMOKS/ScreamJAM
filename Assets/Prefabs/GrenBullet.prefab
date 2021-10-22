@@ -115,6 +115,7 @@ MonoBehaviour:
   lifeTime: 30
   radius: 6
   cntBullets: 10
+  Explosion: {fileID: 7208023158152645364, guid: c3a25c7be23a3cf499355301c62befc1, type: 3}
 --- !u!54 &6132727215184616117
 Rigidbody:
   m_ObjectHideFlags: 0

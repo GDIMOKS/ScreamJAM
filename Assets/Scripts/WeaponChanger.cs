@@ -52,6 +52,10 @@ public class WeaponChanger : MonoBehaviour
                 {
                     sht.CanShoot = true;
                 }
+                if (weapons[i].TryGetComponent<Animator>(out var anim))
+                {
+                    anim.SetTrigger("Take");
+                }
             }
             else
             {
