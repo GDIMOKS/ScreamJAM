@@ -48,23 +48,20 @@ public class CreatureLife : MonoBehaviour
             {
                 Destroy(crl);
             }
-            else
-            {
-                Destroy(gameObject);
-            }
-            if (anim != null)
+            NavMeshAgent nma;
+            if (anim != null && TryGetComponent<NavMeshAgent>(out nma))
             {
                 anim.SetTrigger("Die");
-                GetComponent<NavMeshAgent>().enabled = false;
+                nma.enabled = false;
                 this.enabled = false;
             }
             else
             {
                 TryGetComponent<Animator>(out anim);
-                if (anim != null)
+                if (anim != null && TryGetComponent<NavMeshAgent>(out nma))
                 {
                     anim.SetTrigger("Die");
-                    GetComponent<NavMeshAgent>().enabled = false;
+                    nma.enabled = false;
                     this.enabled = false;
                 }
                 else
