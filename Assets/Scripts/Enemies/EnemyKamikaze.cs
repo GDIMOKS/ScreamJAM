@@ -6,6 +6,7 @@ public class EnemyKamikaze : MonoBehaviour
 {
     public GameObject player;
     public Rigidbody rb;
+    public GameObject Explosion;
     private Vector3 LastPos;
     public int Dmg;
     public float radius;
@@ -24,6 +25,7 @@ public class EnemyKamikaze : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         ExplosionDamage(collision.transform.position, radius);
+        Instantiate(Explosion, transform.position, transform.rotation);
     }
 
     void ExplosionDamage(Vector3 center, float radius)
