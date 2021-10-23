@@ -9,6 +9,7 @@ public class AutoRifle : Shooting
 
     private void Update()
     {
+        FindObjectOfType<UIAmmo>().PrintAmmo(Ammo, StartAmmo);
         if (Input.GetButton("Fire1") && CanShoot && Ammo > 0)
         {
             Bullet.GetComponent<Bullet>().Dmg = dmg;
