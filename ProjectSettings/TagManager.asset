@@ -8,6 +8,7 @@ TagManager:
   - FireLayer
   - Ground
   - FlyingShit
+  - Congrat
   layers:
   - Default
   - TransparentFX
