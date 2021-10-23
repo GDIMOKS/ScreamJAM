@@ -41,6 +41,7 @@ public class Shooting : MonoBehaviour
     private void Update()
     {
         //Debug.Log(parent.name);
+        FindObjectOfType<UIAmmo>().PrintAmmo(Ammo, StartAmmo);
         if (Input.GetButtonDown("Fire1") && CanShoot && Ammo > 0)
         {
             Bullet.GetComponent<Bullet>().Dmg = dmg;

@@ -13,6 +13,7 @@ public class GrenLauncher : Shooting
 
     private void Update()
     {
+        FindObjectOfType<UIAmmo>().PrintAmmo(Ammo, StartAmmo);
         if (Input.GetButtonDown("Fire1") && CanShoot && Ammo > 0)
         {
             Bullet.GetComponent<GrenBullet>().Dmg = dmg;

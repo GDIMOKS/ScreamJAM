@@ -8,6 +8,7 @@ public class FlameThrower : Shooting
     public ParticleSystem[] ps;
     private void Update()
     {
+        FindObjectOfType<UIAmmo>().PrintAmmo(Ammo, StartAmmo);
         if (Input.GetButton("Fire1") && CanShoot && Ammo > 0)
         {
             flame[0].GetComponent<FlameThrowerDmg>().Dmg = dmg;
