@@ -43,11 +43,14 @@ public class Movement : MonoBehaviour
             //currentJumpForce = jumpForce;
         }
 
-        rb.AddForce(transform.TransformDirection(new Vector3(horMove, 0, verMove).normalized * currentSpeed * Time.fixedDeltaTime) - new Vector3(rb.velocity.x, 0, rb.velocity.z), ForceMode.VelocityChange);
+        if (isGrounded)
+        {
+            rb.AddForce(transform.TransformDirection(new Vector3(horMove, 0, verMove).normalized * currentSpeed * Time.fixedDeltaTime) - new Vector3(rb.velocity.x, 0, rb.velocity.z), ForceMode.VelocityChange);
+        }
 
         Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
         Vector3 direction = transform.TransformDirection(Vector3.down);
-        float distance = .7f;
+        float distance = .6f;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {

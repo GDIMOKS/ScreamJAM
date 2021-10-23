@@ -19,19 +19,23 @@ public class GrenBullet : MonoBehaviour
     public float radius;
     public int cntBullets;
     public GameObject Explosion;
+    public bool expl;
 
 
     private void Start()
     {
         LastPos = this.transform.position;
         rb = GetComponent<Rigidbody>();
+        expl = true;
 
         if (!manyBullets)
         {
+            expl = false;
             rb.gameObject.GetComponent<GrenBullet>().Speed /= 5;
             rb.GetComponent<GrenBullet>().Dmg /= cntBullets;
             rb.GetComponent<Transform>().localScale = new Vector3(0.175f, 0.175f, 0.175f);
             rb.GetComponent<GrenBullet>().radius /= 2;
+            StartCoroutine(WaitTillShoot(0.1f));
         }
         rb.AddRelativeForce(Vector3.forward * Speed, ForceMode.Impulse);
 
@@ -39,34 +43,37 @@ public class GrenBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit hit;
-
-        if (Physics.Linecast(LastPos, this.transform.position, out hit))
+        if (expl)
         {
-            CreatureLife crl;
-            Debug.Log(hit.transform.name);
-            Instantiate(Explosion, transform.position, transform.rotation);
+            RaycastHit hit;
+
+            if (Physics.Linecast(LastPos, this.transform.position, out hit))
+            {
+                CreatureLife crl;
+                Debug.Log(hit.transform.name);
+                Instantiate(Explosion, transform.position, transform.rotation);
             
-            if (hit.transform.TryGetComponent<CreatureLife>(out crl))
-            {
-                crl.EditHP(-Dmg);
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                ExplosionDamage(this.transform.position, radius);
-
-                if (manyBullets)
+                if (hit.transform.TryGetComponent<CreatureLife>(out crl))
                 {
-                    FireWorks(hit);
-
-                    Destroy(gameObject);
+                    crl.EditHP(-Dmg);
+                    Destroy(this.gameObject);
                 }
                 else
                 {
                     ExplosionDamage(this.transform.position, radius);
+
+                    if (manyBullets)
+                    {
+                        FireWorks(hit);
+
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        ExplosionDamage(this.transform.position, radius);
+                    }
                 }
-            }
+            } 
         }
 
         LastPos = transform.position;
@@ -93,6 +100,7 @@ public class GrenBullet : MonoBehaviour
             {
                 //Debug.Log(gameObject.name + " задел " + hitCollider.name);
                 Destroy(this.gameObject);
+                
             }
         }
     }
@@ -115,6 +123,6 @@ public class GrenBullet : MonoBehaviour
     public IEnumerator WaitTillShoot(float _time)
     {
         yield return new WaitForSeconds(_time);
-        Destroy(this.gameObject);
+        expl = true;        
     }
 }
