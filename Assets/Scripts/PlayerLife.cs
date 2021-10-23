@@ -6,7 +6,8 @@ public class PlayerLife : CreatureLife
 {
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        
+        if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("-25 hp");
             EditHP(-25);

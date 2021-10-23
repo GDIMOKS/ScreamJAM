@@ -206,13 +206,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.487
+  m_Volume: 0.192
   m_Pitch: 0.85
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 224
   DopplerLevel: 1
   MinDistance: 2.173868
   MaxDistance: 500
@@ -465,13 +465,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.487
+  m_Volume: 0.192
   m_Pitch: 0.85
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 224
   DopplerLevel: 1
   MinDistance: 2.2268608
   MaxDistance: 500

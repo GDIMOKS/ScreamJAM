@@ -32,7 +32,7 @@ public class SpawnEnemies : MonoBehaviour
         {
             for (int i = 0; i < count; i++)
             {
-                enemy[i] = Instantiate<GameObject>(Enemy, spawnPoint.position + new Vector3(Random.Range(-25, 25), spawnPoint.position.y, Random.Range(-25, 25)), quaternion);
+                enemy[i] = Instantiate<GameObject>(Enemy, spawnPoint.position + new Vector3(Random.Range(-10, 10), spawnPoint.position.y, Random.Range(-10, 10)), quaternion);
             }
         }
 

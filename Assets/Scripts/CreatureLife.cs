@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 public class CreatureLife : MonoBehaviour
 {
     public int healPoints;
@@ -69,6 +70,10 @@ public class CreatureLife : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

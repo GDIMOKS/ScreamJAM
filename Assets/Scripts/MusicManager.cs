@@ -4,21 +4,35 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    private BattleMusic battleMusic;
+    private BattleMusic[] battleMusic;
     public AudioSource ambient;
+    int count;
     private void Start()
-    {
-        battleMusic = GetComponentInChildren<BattleMusic>();
+    {        
+        battleMusic = GetComponentsInChildren<BattleMusic>();
+        count = battleMusic.Length;
     }
     private void Update()
     {
-        if (battleMusic.playerInside && ambient.volume > 0)
+        for (int i = 0; i < battleMusic.Length; i++)
         {
-            ambient.volume -= 0.5f * Time.deltaTime;
+            if (battleMusic[i].playerInside && ambient.volume > 0)
+            {
+                ambient.volume -= 0.5f * Time.deltaTime;
+            }
+            else if (!battleMusic[i].playerInside && ambient.volume < 1)
+            {
+                count++;
+                //ambient.volume += 0.5f * Time.deltaTime;
+            }
         }
-        else if (!battleMusic.playerInside && ambient.volume < 1)
+        //Debug.Log(count);
+        if (count == battleMusic.Length)
         {
             ambient.volume += 0.5f * Time.deltaTime;
         }
+        count = 0;
+
+        
     }
 }

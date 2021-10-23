@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7284273888889499207}
   - component: {fileID: 7284273888889499225}
   - component: {fileID: 7284273888889499206}
+  - component: {fileID: 2966456846326701106}
   m_Layer: 0
   m_Name: EnemyKamikaze
   m_TagString: Untagged
@@ -150,6 +151,18 @@ MonoBehaviour:
   Explosion: {fileID: 7208023158152645364, guid: c3a25c7be23a3cf499355301c62befc1, type: 3}
   Dmg: 40
   radius: 5
+--- !u!122 &2966456846326701106
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284273888889499224}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278650699
+  m_Size: 2.1
 --- !u!1001 &7284273888973613065
 PrefabInstance:
   m_ObjectHideFlags: 0
